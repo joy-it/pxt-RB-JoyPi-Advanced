@@ -48,7 +48,8 @@
         "TFT18.ts",
         "TouchSensor-MPR121.ts",
         "Ultrasonic-HC-SR04.ts",
-        "Vibration.ts"
+        "Vibration.ts",
+        "Advanced.ts"
     ],
     "testFiles": [
         "test.ts"

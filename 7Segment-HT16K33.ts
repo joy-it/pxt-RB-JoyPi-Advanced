@@ -1,19 +1,13 @@
 /**
-  * Joy-Pi Advanced: Unleash your creativity with this compact, powerful device! Compatible with Micro:Bit, Raspberry Pi, Arduino & more, it features over 30 stations, lessons and modules, plus a learning hub for continuous improvement and project support.
-  */
+* Enumeration for On/Off state
+*/
+enum JoyPiAdvancedColon {
+    //% block="On"
+    on,
+    //% block="Off"
+    off
+}
 
-    /**
-    * Enumeration for On/Off state
-    */
-    enum JoyPiAdvancedColon {
-        //% block="On"
-        on,
-        //% block="Off"
-        off
-    }
-
-
-//% color="#275C6B" weight=100 icon="\uf109" block="JoyPi Advanced"
 namespace JoyPiAdvanced {
     const segmentADDR = 0x70
     const segmentBlinkADDR = 0x80
@@ -135,4 +129,3 @@ namespace JoyPiAdvanced {
 
   
   }
-  
