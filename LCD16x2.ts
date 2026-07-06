@@ -202,7 +202,8 @@ namespace JoyPiAdvanced {
     //% subcategory="LCD16x2"
     export function lcd16x2TurnOn(): void {
         lcd16x2BacklightOn();
-        command(0x04);
+        command(0x0C);
+        command(0x06);
     }
 
     /**
