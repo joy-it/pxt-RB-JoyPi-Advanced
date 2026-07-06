@@ -93,14 +93,11 @@ namespace JoyPiAdvanced {
     //% subcategory="Analog-Digital Converter"
     //% channel.min=0 channel.max=7
     //% weight=90
-    export function adcReadVoltage(channel: number): number {
-      let tempValue = 0
-      while(tempValue == 0){
-        tempValue = adcReadValue(channel)
+    export function adcReadVoltage(channel: number, value?: number): number {
+        if (value == undefined){
+            value = adcReadValue(channel)
       }
-
-      return (tempValue * 5.00/4096.0)
+        return (value * 5.00/4096.0)
     }
   
   }
-  
