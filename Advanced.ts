@@ -38,7 +38,6 @@ namespace JoyPiAdvanced {
         else {
             serial.writeLine("ERROR: Not all I2C devices were found!")
             serial.writeNumbers(i2c_devices)
-            control.panic(101)
         }
     }
 
@@ -70,18 +69,18 @@ namespace JoyPiAdvanced {
     }
 
     // method to return saved version of Joy-Pi Advanced
-    function getAdvancedRevision() {
+    export function getAdvancedRevision() {
         return advanced_revision;
     }
 
     // method to check if initializeAdvanced() was executed
-    function isAdvancedInitialized() {
+    export function isAdvancedInitialized() {
         if (getAdvancedRevision() == 0) return false;
         return true;
     }
 
     // method to run initializeAdvanced() if it was not executed before
-    function checkAdvancedRevision() {
+    export function checkAdvancedRevision() {
         if (!isAdvancedInitialized) initializeAdvanced();
     }
 
