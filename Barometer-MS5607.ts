@@ -110,4 +110,20 @@ namespace  JoyPiAdvanced{
     export function barometerGetPressure() {
         return Math.round(((get_pressure() / 100) + Number.EPSILON) * 100) / 100
     }
+
+    /**
+     * Calculates altitude based on measured pressure mean sea level pressure or local QNH
+     * @param pressure as reference for calculation
+     */
+    //% block="barometer altitude with %reference_pressure"
+    //% weight=70
+    //% subcategory="Barometer"
+    //% reference_pressure.defl=1013.25
+    export function barometerGetAltitude(reference_pressure ?: number) {
+        if (reference_pressure == 0) reference_pressure = 1013.25;
+        let pressure = barometerGetPressure()
+        let ratio = pressure / reference_pressure
+        let altitude = 44330 * (1 - Math.pow(ratio, 1 / 5.255))
+        return Math.round(altitude * 100) / 100
+    }
 }
