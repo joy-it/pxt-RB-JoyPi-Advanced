@@ -103,7 +103,7 @@ float DS18B20GetTemperture(void){
   int TH,TL;
   float value;
   DS18B20Start();
-  sleep_us(100);
+  fiber_sleep(750);
   DS18B20Rest();
   DS18B20Check();
   sleep_us(2);
@@ -130,7 +130,7 @@ int Temperature() {
     float data1,data2;
     data1=DS18B20GetTemperture();
     data2=DS18B20GetTemperture();
-    if((data2-data1)>2){
+    if(fabs(data2 - data1) > 2.0f){
         return data1*10;
     }else{
         return data2*10;
