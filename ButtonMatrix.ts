@@ -82,6 +82,122 @@ namespace JoyPiAdvanced  {
         pins.i2cWriteBuffer(i2c_address, reset, false)
     }
 
+    function isDigit(character: string) {
+        return character >= "0" && character <= "9"
+    }
+
+    function isOperator(operator: string) {
+        return operator == "+" ||
+            operator == "-" ||
+            operator == "*" ||
+            operator == "/" ||
+            operator == "**" ||
+            operator == "//"
+    }
+
+    function operatorPriority(operator: string) {
+        if (operator == "**") return 3;
+        if (operator == "*" || operator == "/" || operator == "//") return 2;
+        if (operator == "+" || operator == "-") return 1;
+        return 0;
+    }
+
+    function applyOperator(values: number[], operators: string[]) {
+        if (values.length < 2 || operators.length < 1) return false;
+        let operator = operators.pop()
+        let rightValue = values.pop()
+        let leftValue = values.pop()
+        let result = 0
+        if (operator == "+") result = leftValue + rightValue
+        else if (operator == "-") result = leftValue - rightValue
+        else if (operator == "*") result = leftValue * rightValue
+        else if (operator == "**") result = Math.pow(leftValue, rightValue)
+        else if (operator == "/") {
+            if (rightValue == 0) return false
+            result = leftValue / rightValue
+        }
+        else if (operator == "//") {
+            if (rightValue == 0) return false
+            result = Math.floor(leftValue / rightValue)
+        }
+        else return false
+        values.push(result)
+        return true
+    }
+
+    function readOperator(term: string, position: number) {
+        let firstCharacter = term.charAt(position)
+        if (position + 1 < term.length) {
+            let twoCharacters = firstCharacter + term.charAt(position + 1)
+            if (twoCharacters == "**" || twoCharacters == "//") return twoCharacters
+        }
+        if (firstCharacter == "+" || firstCharacter == "-" || firstCharacter == "*" || firstCharacter == "/") return firstCharacter;
+        return ""
+    }
+    
+    function calculateTerm(term: string) {
+        let values: number[] = []
+        let operators: string[] = []
+        let position = 0
+        let expectNumber = true
+        while (position < term.length) {
+            let character = term.charAt(position)
+            if (expectNumber) {
+                let sign = 1
+                if (character == "+" || character == "-") {
+                    if (character == "-") sign = -1
+                    if (position < term.length) position += 1
+                }
+                let numberValue = 0
+                let digitFound = false
+                let decimalFactor = 0.1
+                let decimalPointFound = false
+                while (position < term.length) {
+                    character = term.charAt(position)
+                    if (isDigit(character)) {
+                        digitFound = true
+                        let digit = character.charCodeAt(0) - 48
+                        if (decimalPointFound) {
+                            numberValue += digit * decimalFactor
+                            decimalFactor /= 10
+                        }
+                        else numberValue = numberValue * 10 + digit
+                        position += 1
+                    }
+                    else if (character == "." && !decimalPointFound) {
+                        decimalPointFound = true
+                        position += 1
+                    }
+                    else break;
+                }
+                if (!digitFound) return "Term can not be calculated"
+                values.push(numberValue * sign)
+                expectNumber = false
+            }
+            else {
+                let currentOperator = readOperator(term, position)
+                if (!isOperator(currentOperator)) return "Term can not be calculated"
+                while (operators.length > 0) {
+                    let previousOperator = operators[operators.length - 1]
+                    let shouldCalculate = false
+                    if (currentOperator == "**") shouldCalculate = operatorPriority(previousOperator) > operatorPriority(currentOperator)
+                    else shouldCalculate = operatorPriority(previousOperator) >= operatorPriority(currentOperator)
+                    if (!shouldCalculate) break;
+                    if (!applyOperator(values, operators)) return "Term can not be calculated"
+                }
+                operators.push(currentOperator)
+                position += currentOperator.length
+                expectNumber = true
+            }
+        }
+        while (operators.length > 0) {
+            if (!applyOperator(values, operators)) return "Term can not be calculated!"
+        }
+        if (values.length != 1 || expectNumber) return "Term can not be calculated!"
+        return "" + values[0]
+    }
+
+
     /**
      * Initialized the button matrix
      */
@@ -121,12 +237,12 @@ namespace JoyPiAdvanced  {
     }
 
     /**
-     * Returns the the button-code if a button on the matrix is pressed
+     * Returns the the button-code (column|row) if a button on the matrix is pressed
      */
-    //% block="Button pressed on button matrix"
-    //% weight=70
+    //% block="button-code of pressed button on button matrix"
+    //% weight=60
     //% subcategory="Button matrix"
-    export function buttonmatrixPressed() {
+    export function buttonmatrixGetButtonCode() {
         let returnValue = -1
         if (checkMatrix() == false) return -1
         else {
@@ -161,13 +277,23 @@ namespace JoyPiAdvanced  {
     }
 
     /**
+     * Returns true if a button on matrix was pressed otherwise false
+     */
+    //% block="button on button matrix was pressed"
+    //% weight=70
+    //% subcategory="Button matrix"
+    export function buttonmatrixIsButtonPressed() {
+        return checkMatrix()
+    }
+
+    /**
      * Returns the exact value if a button on the matrix is pressed
      */
     //% block="value of pressed button on button matrix"
-    //% weight=60
+    //% weight=90
     //% subcategory="Button matrix"
-    export function buttonmatrixPressedValue() {
-        let value = buttonmatrixPressed()
+    export function buttonmatrixGetKey() {
+        let value = buttonmatrixGetButtonCode()
         if(value == 11) return "7"
         if (value == 12) return "4"
         if (value == 13) return "1"
@@ -184,7 +310,21 @@ namespace JoyPiAdvanced  {
         if (value == 42) return "/"
         if (value == 43) return "+"
         if (value == 44) return "-"
+        return ""
+    }
 
-        return "-1"
+    /**
+     * Calculate term which is input via button Matrix
+     * @param current term
+     */
+    //% block="Calculate %term of button matrix"
+    //% weight=60
+    //% subcategory="Button matrix"
+    export function buttonmatrixCalculate(term?: string){
+        let value = buttonmatrixGetKey()
+        if (value == "") return term
+        else if (value == "=") return calculateTerm(term)
+        else if (value == "#") return ""
+        return term += value
     }
 }

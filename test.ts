@@ -14,7 +14,7 @@ let barometerTemperature = JoyPiAdvanced.barometerGetTemperature()
 
 // Get pressed button from matrix
 JoyPiAdvanced.buttonmatrixInit()
-let buttonmatrixButton = JoyPiAdvanced.buttonmatrixPressed()
+let buttonmatrixButton = JoyPiAdvanced.buttonmatrixGetKey()
 
 // Turn on buzzer - wait 5 seconds - turn off buzzer
 JoyPiAdvanced.buzzerOn(2000)
