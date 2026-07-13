@@ -28,14 +28,14 @@ namespace JoyPiAdvanced {
     //% weight=100
     export function initializeAdvanced() {
         const i2c_devices = getI2CDevices();
-        if (containsAll(i2c_devices, fixed_i2c_devices)){
-            // RGB Matrix
+        if (containsAll(i2c_devices, fixed_i2c_devices)) {
+            // RGB Matrix 0x66 for Rev2.0, not I2C before
             if (i2c_devices.indexOf(0x66) >= 0) advanced_revision = 2.0;
-            // EEPROM
+            // EEPROM 0x51 for Rev1.1, 0x50 for Rev1.0
             else if ((i2c_devices.indexOf(0x51) >= 0)) advanced_revision = 1.1;
             else advanced_revision = 1.0;
         }
-        else{
+        else {
             serial.writeLine("ERROR: Not all I2C devices were found!")
             serial.writeNumbers(i2c_devices)
             control.panic(101)
@@ -50,12 +50,12 @@ namespace JoyPiAdvanced {
     //% subcategory="Set-Up Advanced"
     //% weight=90
     //% version.defl=JoyPiAdvancedRevision.rev2_0
-    export function setAdvancedRevision(version: JoyPiAdvancedRevision){
+    export function setAdvancedRevision(version: JoyPiAdvancedRevision) {
         if (version == JoyPiAdvancedRevision.rev1_0) advanced_revision = 1.0;
         else if (version == JoyPiAdvancedRevision.rev1_1) advanced_revision = 1.1;
         else if (version == JoyPiAdvancedRevision.rev2_0) advanced_revision = 2.0;
     }
-    
+
     // method to search for all possible I2C devices
     function getI2CDevices() {
         const i2c_devices = [];
@@ -70,9 +70,21 @@ namespace JoyPiAdvanced {
     }
 
     // method to return saved version of Joy-Pi Advanced
-    function getAdvancedRevision(){
+    function getAdvancedRevision() {
         return advanced_revision;
     }
+
+    // method to check if initializeAdvanced() was executed
+    function isAdvancedInitialized() {
+        if (getAdvancedRevision() == 0) return false;
+        return true;
+    }
+
+    // method to run initializeAdvanced() if it was not executed before
+    function checkAdvancedRevision() {
+        if (!isAdvancedInitialized) initializeAdvanced();
+    }
+
 
     // method to check if array has all elements of required
     function containsAll(array: number[], required: number[]): boolean {
