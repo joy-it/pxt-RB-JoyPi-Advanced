@@ -81,7 +81,11 @@ namespace JoyPiAdvanced {
 
     // method to run initializeAdvanced() if it was not executed before
     export function checkAdvancedRevision() {
-        if (!isAdvancedInitialized) initializeAdvanced();
+        if (!isAdvancedInitialized()) {
+            initializeAdvanced();
+            return false;
+        }
+        else return true;
     }
 
 
