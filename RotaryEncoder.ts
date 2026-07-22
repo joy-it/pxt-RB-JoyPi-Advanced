@@ -1,4 +1,4 @@
-const enum JoyPiAdvancedDirection {
+enum JoyPiAdvancedDirection {
     //% block="Right"
     clockwise = 2,
     //% block="Left"
@@ -6,39 +6,51 @@ const enum JoyPiAdvancedDirection {
 }
 
 namespace JoyPiAdvanced {
-    const rotaryDTPin = DigitalPin.P2;
-    const rotaryCLKPin = DigitalPin.P3;
-    const rotarySWPin = DigitalPin.P4;
-    const KYEventID = 3100;
+    const encoder_dt = DigitalPin.P2;
+    const encoder_clk = DigitalPin.P3;
+    const encoder_button = DigitalPin.P4;
+    const rotaryEncoderID = 3100;
+    const encoder_steps_per_detent = 4;
+    let encoder_gray_code: { [key: number]: number } = {
+        1: -1, // 0b0001: 00 -> 01
+        7: -1, // 0b0111: 01 -> 11
+        14: -1, // 0b1110: 11 -> 10
+        8: -1, // 0b1000: 10 -> 00
 
-    let directionIndicator = 1;
-    let currentCLK = 0;
-    let currentDT = 0;
-    let lastCLK = 0;
-    let EvCounter = 1;
-    let lastPressed = 1;
-    let pressedID = 5600;
+        2: 1, // 0b0010: 00 -> 10
+        11: 1, // 0b1011: 10 -> 11
+        13: 1, // 0b1101: 11 -> 01
+        4: 1, // 0b0100: 01 -> 00
+    }
+    let encoder_initialized = false
+    let encoder_steps = 0;
+    let encoder_last_state = (pins.digitalReadPin(encoder_clk) << 1) | pins.digitalReadPin(encoder_dt)
+    let encoder_button_handler: () => void = null
+    let encoder_button_last_press = 0
 
     // Function to decide the direction in which the Encoder is being turned
-    function RotaryEncoder() {
-        if (currentCLK != lastCLK) {
-            if (currentDT != currentCLK) {
-                directionIndicator = 1;
-            }
-            else {
-                directionIndicator = 0;
-            }
+    // is executed if clk or dt change state
+    function rotaryEncoderRotation() {
+        if (!encoder_initialized) return
+        let new_state = (pins.digitalReadPin(encoder_clk) << 1) | pins.digitalReadPin(encoder_dt)
+        let key = (encoder_last_state << 2) | new_state
+        let delta = encoder_gray_code[key] || 0
+        if (delta != 0) encoder_steps += delta
+        if (encoder_steps >= encoder_steps_per_detent || encoder_steps <= -encoder_steps_per_detent){
+            if (encoder_steps >= encoder_steps_per_detent) control.raiseEvent(rotaryEncoderID + JoyPiAdvancedDirection.clockwise, JoyPiAdvancedDirection.clockwise);
+            else if (encoder_steps <= -encoder_steps_per_detent) control.raiseEvent(rotaryEncoderID + JoyPiAdvancedDirection.counterclockwise, JoyPiAdvancedDirection.counterclockwise);
+            encoder_steps = 0
+        }
+        encoder_last_state = new_state
+    }
 
-            EvCounter += 1;
-            if (EvCounter % 2 == 0) { // kill every second Event  
-                if (directionIndicator == 1) {
-                    control.raiseEvent(KYEventID + JoyPiAdvancedDirection .clockwise, JoyPiAdvancedDirection .clockwise);
-                }
-                else {
-                    control.raiseEvent(KYEventID + JoyPiAdvancedDirection .counterclockwise, JoyPiAdvancedDirection .counterclockwise);
-                }
-            }
-            lastCLK = currentCLK;
+    // Function which is executed when button is pressed
+    function rotaryEncoderPressed(){
+        if (!encoder_initialized) return
+        let currentTime = input.runningTime()
+        if (currentTime - encoder_button_last_press >= 200){
+            encoder_button_last_press = currentTime
+            encoder_button_handler()
         }
     }
 
@@ -49,58 +61,74 @@ namespace JoyPiAdvanced {
     //% subcategory="Rotary Encoder"
     //% weight=100
     export function initializeRotaryEncoder() {
+        if (encoder_initialized) return;
         led.enable(false)
+        pins.setPull(encoder_clk, PinPullMode.PullUp);
+        pins.setPull(encoder_dt, PinPullMode.PullUp);
+        pins.setPull(encoder_button, PinPullMode.PullUp);
+        pins.setEvents(encoder_clk, PinEventType.Edge)
+        pins.setEvents(encoder_dt, PinEventType.Edge)
+        pins.setEvents(encoder_button,PinEventType.Edge)
+        control.onEvent(
+            DAL.MICROBIT_ID_IO_P3,
+            DAL.MICROBIT_PIN_EVT_RISE,
+            rotaryEncoderRotation
+        )
+        control.onEvent(
+            DAL.MICROBIT_ID_IO_P3,
+            DAL.MICROBIT_PIN_EVT_FALL,
+            rotaryEncoderRotation
+        )
+        control.onEvent(
+            DAL.MICROBIT_ID_IO_P2,
+            DAL.MICROBIT_PIN_EVT_RISE,
+            rotaryEncoderRotation
+        )
+        control.onEvent(
+            DAL.MICROBIT_ID_IO_P2,
+            DAL.MICROBIT_PIN_EVT_FALL,
+            rotaryEncoderRotation
+        )
+        control.onEvent(
+            DAL.MICROBIT_ID_IO_P4,
+            DAL.MICROBIT_PIN_EVT_FALL,
+            rotaryEncoderPressed
+        )
+        encoder_initialized = true
+    }
 
-        pins.setPull(rotaryDTPin, PinPullMode.PullUp);
-        pins.setPull(rotarySWPin, PinPullMode.PullUp);
-        // Interrupt the code on a rising edge on the rotaryCLKPin to execute the RotaryEncoder() function
-        pins.onPulsed(rotaryCLKPin, PulseValue.High, function () {
-            currentCLK = 1
-            RotaryEncoder()
-
-        })
-
-        // Interrupt the code on a falling edge on the rotaryCLKPin to execute the RotaryEncoder() function
-        pins.onPulsed(rotaryCLKPin, PulseValue.Low, function () {
-            currentCLK = 0
-            RotaryEncoder()
-
-        })
-
-        pins.onPulsed(rotaryDTPin, PulseValue.High, function () {
-            currentDT = 1
-
-        })
-
-        // Interrupt the code on a falling edge on the rotaryCLKPin to execute the RotaryEncoder() function
-        pins.onPulsed(rotaryDTPin, PulseValue.Low, function () {
-            currentDT = 0
-
-        })
-
+    /**
+      * Deinitializes the rotary encoder
+      */
+    //% block="deinitialize Rotary Encoder"
+    //% subcategory="Rotary Encoder"
+    //% weight=10
+    export function deinitializeRotaryEncoder(){
+        if (!encoder_initialized) return
+        pins.setEvents(encoder_clk, PinEventType.None)
+        pins.setEvents(encoder_dt, PinEventType.None)
+        pins.setEvents(encoder_button, PinEventType.None)
+        encoder_initialized = false
     }
 
      /**
       * Event that is executed as soon as the rotary encoder is turned in the corresponding direction
       * @param JoyPiAdvancedDirection  Direction to be listened to
       */
-    //% block="on rotary encoder turned in direction %direction"
+    //% block="When Rotary Encoder turned in %direction direction"
     //% subcategory="Rotary Encoder"
     //% weight=100
-    export function rotaryEncoderonTurned(direction: JoyPiAdvancedDirection , handler: () => void) {
-        control.onEvent(KYEventID + direction, direction, handler);
+    export function rotaryEncoderWhenTurned(direction: JoyPiAdvancedDirection , handler: () => void) {
+        control.onEvent(rotaryEncoderID + direction, direction, handler);
     }
 
     /**
      * Event that is executed as soon as the rotary encoder is pressed
      */
-    //% block="on rotary encoder pressed"
+    //% block="When Rotary Encoder pressed"
     //% subcategory="Rotary Encoder"
     //% weight=90
-    export function rotaryEncoderonPressEvent(handler: () => void) {
-        pins.onPulsed(rotarySWPin, PulseValue.Low, function () {
-            handler()
-        })
+    export function rotaryEncoderWhenPressed(handler: () => void) {
+        encoder_button_handler = handler
     }
-
 }
