@@ -1,3 +1,14 @@
+enum JoyPiAdvancedGyroscopeScaleFactor {
+    //% block="0"
+    scale_0,
+    //% block="8"
+    scale_8,
+    //% block="16"
+    scale_16,
+    //% block="24"
+    scale_24,
+}
+
 namespace JoyPiAdvanced {
     let mosiPin = DigitalPin.P15;
     let misoPin = DigitalPin.P14;
@@ -5,7 +16,7 @@ namespace JoyPiAdvanced {
     let gyroscopeCSPin = DigitalPin.P1;
     let scale_gyroscope = 700;
     let scale_range = 46.5;
-
+    let scale_factor = JoyPiAdvancedGyroscopeScaleFactor.scale_0
 
     function write(register: number, data: number) {
         pins.digitalWritePin(gyroscopeCSPin, 0);
@@ -60,10 +71,10 @@ namespace JoyPiAdvanced {
         let xL = read(0x44);
         let x = xH | xL;
         if (x / scale_gyroscope > scale_range) {
-            return x / scale_gyroscope - (2 * scale_range);
+            return Math.round((x / scale_gyroscope - (2 * scale_range))*100) / 100;
         }
         else {
-            return x / scale_gyroscope;
+            return Math.round((x / scale_gyroscope) * 100) / 100;
         }
     }
 
@@ -78,10 +89,10 @@ namespace JoyPiAdvanced {
         let yL = read(0x46);
         let y = yH | yL;
         if (y / scale_gyroscope > scale_range) {
-            return y / scale_gyroscope - (2 * scale_range);
+            return Math.round((y / scale_gyroscope - (2 * scale_range)) * 100) / 100;
         }
         else {
-            return y / scale_gyroscope;
+            return Math.round((y / scale_gyroscope) * 100) / 100;
         }
     }
 
@@ -92,23 +103,50 @@ namespace JoyPiAdvanced {
     //% weight=80
     //% subcategory="Gyroscope"
     export function gyroscopeGetTilt() {
-        let tiltThreshold = 2;
-        let y2 = gyroscopeGetY();
-        let x2 = gyroscopeGetX();
-        if (y2 > tiltThreshold) {
+        let y = gyroscopeGetY();
+        let x = gyroscopeGetX();
+        if (y > 5) {
             return 'right';
         }
-        else if (y2 < -tiltThreshold) {
+        else if (y < -5) {
             return 'left';
         }
-        else if (x2 > tiltThreshold) {
-            return 'backward';
-        }
-        else if (x2 < -tiltThreshold) {
+        else if (x > 3) {
             return 'forward';
         }
+        else if (x < -3) {
+            return 'backward';
+        }
         else {
-            return null;
+            return 'No movement';
+        }
+    }
+
+    /**
+     * Set scale factor of gyroscope
+     */
+    //% block="set scale factor of gyroscope to %scale"
+    //% weight=10
+    //% subcategory="Gyroscope"
+    export function gyroscopeSetScaleFactor(scale: JoyPiAdvancedGyroscopeScaleFactor){
+        scale_factor = scale
+        write(0x19, 0)
+        write(0x1B, scale + 1)
+        if (scale == JoyPiAdvancedGyroscopeScaleFactor.scale_0){
+            scale_gyroscope = 700
+            scale_range = 46.5
+        }
+        else if (scale == JoyPiAdvancedGyroscopeScaleFactor.scale_8){
+            scale_gyroscope = 350
+            scale_range = 93
+        }
+        else if (scale == JoyPiAdvancedGyroscopeScaleFactor.scale_16){
+            scale_gyroscope = 175
+            scale_range = 187
+        }
+        else if (scale == JoyPiAdvancedGyroscopeScaleFactor.scale_24){
+            scale_gyroscope = 87.5
+            scale_range = 374
         }
     }
 }
