@@ -44,7 +44,7 @@ JoyPiAdvanced.gyroscopeInit()
 let gyroscopeXAxis = JoyPiAdvanced.gyroscopeGetX()
 
 // Measure voltage off hall sensor
-let hallSensorVoltage = JoyPiAdvanced.hallSensorVoltage()
+let hallSensorVoltage = JoyPiAdvanced.hallSensorGetMagneticField()
 
 // Get pressed button from IR receiver
 JoyPiAdvanced.initIrReceiver()
