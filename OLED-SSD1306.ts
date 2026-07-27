@@ -537,11 +537,21 @@ namespace JoyPiAdvanced {
     //% block="draw rectangle at x: %x0 and y: %y0 with width: %width and height: %height on OLED display"
     //% subcategory="OLED Display"
     //% weight=60
+    //% width.min=0
+    //% height.min = 0
     export function oledDrawRectangle(x: number, y: number, width: number, height: number) {
-      oledDrawLine(x, y, x + width, y)
-      oledDrawLine(x, y + height, x + width, y + height)
-      oledDrawLine(x, y, x, y + height)
-      oledDrawLine(x + width, y, x + width, y + height)
+        let pixels: Array<Array<number>> = []
+        const right = x + width -1
+        const bottom = y + height -1
+        for (let currentX = x; currentX <= right; currentX++){
+            pixels.push([currentX, y])
+            pixels.push([currentX, bottom])
+        }
+        for (let currentY = y + 1; currentY < bottom; currentY++){
+            pixels.push([x, currentY])
+            pixels.push([right, currentY])
+        }
+        drawShape(pixels)
     }
   
     /**
@@ -566,8 +576,5 @@ namespace JoyPiAdvanced {
           }
       }
       drawShape(pixels)
-  
-  
     }
   }
-  
