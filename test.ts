@@ -74,7 +74,7 @@ JoyPiAdvanced.oledDrawRectangle(0, 0, 10, 10)
 let pirMotion = JoyPiAdvanced.pirCheckMotion()
 
 // Set pwm fan to 50% speed
-JoyPiAdvanced.pwmSetSpeed(50)
+JoyPiAdvanced.pwmFanSetSpeed(50)
 
 // Get current voltage of potentiomer
 let potentiometerVoltage = JoyPiAdvanced.potentiometerGetValue()
