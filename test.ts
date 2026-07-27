@@ -48,7 +48,7 @@ let hallSensorVoltage = JoyPiAdvanced.hallSensorGetMagneticField()
 
 // Get pressed button from IR receiver
 JoyPiAdvanced.initIrReceiver()
-let pressedIRButton = JoyPiAdvanced.irButton()
+let pressedIRButton = JoyPiAdvanced.irGetValue()
 
 // Get Y Value from joystick
 let joystickYValue = JoyPiAdvanced.joystickGetYValue()

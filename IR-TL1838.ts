@@ -133,19 +133,48 @@ namespace JoyPiAdvanced {
     /**
      * Returns the corresponding code as soon as an IR signal is received by the sensor
      */
-    //% block="IR button"
+    //% block="received IR code"
     //% subcategory="IR Receiver"
     //% weight=95
-    export function irButton(): number {
+    export function irGetValue(): number {
         led.enable(false)
         notifyIrEvents()
-
+        let ir_code : number = 0
         if (NEWDATAAVAILABLE) {
             NEWDATAAVAILABLE = false;
-            return CMDBIT >> 8;
+            ir_code = CMDBIT >> 8;
         }
-        else {
-            return 0
-        }
+        return ir_code;
+    }
+
+    /**
+     * Returns the corresponding button of remote control
+     */
+    //% block="%ir_code as button of remote control"
+    //% subcategory="IR Receiver"
+    //% weight=90
+    export function irReadValue(ir_code: number){
+        if (ir_code == 0xA2) return "CH-"
+        else if (ir_code == 0x62) return "CH"
+        else if (ir_code == 0xE2) return "CH+"
+        else if (ir_code == 0x22) return "PREV |<<"
+        else if (ir_code == 0x02) return "NEXT >>|"
+        else if (ir_code == 0xC2) return "PLAY/PAUSE"
+        else if (ir_code == 0xE0) return "VOL-"
+        else if (ir_code == 0xA8) return "VOL+"
+        else if (ir_code == 0x90) return "EQ"
+        else if (ir_code == 0x68) return "0"
+        else if (ir_code == 0x98) return "100+"
+        else if (ir_code == 0xB0) return "200+"
+        else if (ir_code == 0x30) return "1"
+        else if (ir_code == 0x18) return "2"
+        else if (ir_code == 0x7A) return "3"
+        else if (ir_code == 0x10) return "4"
+        else if (ir_code == 0x38) return "5"
+        else if (ir_code == 0x5A) return "6"
+        else if (ir_code == 0x42) return "7"
+        else if (ir_code == 0x4A) return "8"
+        else if (ir_code == 0x52) return "9"
+        else return "Unknown: " + ir_code.toString()
     }
 }
