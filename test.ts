@@ -77,7 +77,7 @@ let pirMotion = JoyPiAdvanced.pirCheckMotion()
 JoyPiAdvanced.pwmSetSpeed(50)
 
 // Get current voltage of potentiomer
-let potentiometerVoltage = JoyPiAdvanced.potentiometerVoltage()
+let potentiometerVoltage = JoyPiAdvanced.potentiometerGetValue()
 
 // Read from RFID tag
 JoyPiAdvanced.rfidInit()
