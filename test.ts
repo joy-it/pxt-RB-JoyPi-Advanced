@@ -64,7 +64,7 @@ let ldrLight = JoyPiAdvanced.ldrGetRawVoltage()
 let lightBarrierIsTriggered = JoyPiAdvanced.lightBarrierIsTriggered()
 
 // Measure temperature with NTC
-let ntcTemperature = JoyPiAdvanced.ntcTemperature()
+let ntcTemperature = JoyPiAdvanced.ntcGetRawVoltage()
 
 // Draw 10x10 rectangle on OLED
 JoyPiAdvanced.oledInit()
