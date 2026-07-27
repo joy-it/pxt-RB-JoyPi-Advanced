@@ -24,7 +24,7 @@ namespace JoyPiAdvanced {
     /**
      * Checks the current button state of the joystick. True means that the button is pressed. False means that the button is not pressed.
      */
-    //% block="joystick button state"
+    //% block="joystick button is pressed"
     //% subcategory="Joystick"
     //% weight=80
     export function joystickCheckButton(): boolean {
@@ -37,4 +37,3 @@ namespace JoyPiAdvanced {
       }
     }
   }
-  
