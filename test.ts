@@ -84,7 +84,7 @@ JoyPiAdvanced.rfidInit()
 JoyPiAdvanced.rfidReadText()
 
 // Set RGB matrix to full red
-JoyPiAdvanced.matrixShowColor(255, 0, 0)
+JoyPiAdvanced.rgbMatrixShowColor(255, 0, 0)
 
 // Read current year from RTC
 let rtcCurrentYear = JoyPiAdvanced.rtcGetYear()
