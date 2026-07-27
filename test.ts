@@ -58,7 +58,7 @@ JoyPiAdvanced.lcd16x2Init()
 JoyPiAdvanced.lcd16x2ShowText('Hello World', 0, 0)
 
 // Measure light intensity with LDR
-let ldrLight = JoyPiAdvanced.ldrLight()
+let ldrLight = JoyPiAdvanced.ldrGetRawVoltage()
 
 // Check if light barrier is triggered
 let lightBarrierIsTriggered = JoyPiAdvanced.lightBarrierIsTriggered()
