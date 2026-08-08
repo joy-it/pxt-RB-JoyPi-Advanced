@@ -175,9 +175,31 @@
           const color_high = colorHigh(color)
           const color_low = colorLow(color)
           enterDataMode()
-          for (let i = 0; i < count; i++){
+          while (count >= 8) {
               pins.spiWrite(color_high)
               pins.spiWrite(color_low)
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+
+              count -= 8
+          }
+          while (count > 0) {
+              pins.spiWrite(color_high)
+              pins.spiWrite(color_low)
+              count--
           }
           exitDataMode()
       }
@@ -236,7 +258,7 @@
           pins.spiPins(DigitalPin.P15, DigitalPin.P14, DigitalPin.P13)
           pins.spiFormat(8, 0)
           // set SPI frequency
-          pins.spiFrequency(8000000)
+          pins.spiFrequency(16000000)
           tftReset()
           // Software reset
           send1(TFTCommands.SWRESET, 1)
@@ -376,7 +398,8 @@
       //% subcategory="TFT1.8"
       //% weight=84
       export function tftFill(color: JoyPiAdvancedTFTColor){
-          tftFillRectangle(0, 0, TFTWIDTH, TFTHEIGHT, color)
+          setWindow(0, 0, TFTWIDTH - 1, TFTHEIGHT - 1)
+          writeColor(color, TFTWIDTH *TFTHEIGHT)
       }
 
       /**
@@ -576,7 +599,7 @@
        * @param color Color of the text
        * @param bgColor Background color of the text
        */
-       //% block="show string:%string on TFT at x:%x and y:%y with zoom-level:%zoom color:%color and background color:%color"
+       //% block="show string:%string on TFT at x:%x and y:%y with zoom-level:%zoom color:%color and background color:%bgColor"
        //% subcategory="TFT1.8"
        //% weight=70
        //% x.min=0 x.max=TFTWIDTH
@@ -675,4 +698,6 @@
       export function tftOn(): void {
           send0(TFTCommands.DISPON)
       }
+ 
+ 
   }
