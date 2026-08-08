@@ -16,7 +16,7 @@ enum JoyPiAdvancedRevision {
  */
 //% color="#275C6B" weight=100 icon="\uf109" 
 //% block="JoyPi Advanced"
-//% subcategories='["Set-Up Advanced", "7-Segment Display", "Analog-Digital Converter", "Barometer", "Button matrix", "Buzzer", "Color-Sensor", "DHT11", "DS18B20", "EEPROM", "Gyroscope", "Hall sensor", "IR Receiver", "Joystick", "LCD16x2", "LDR", "Light barrier", "NTC", "OLED Display", "PIR Sensor", "PWM Fan", "Potentiometer", "MFRC522 RFID", "RGB Matrix", "RTC", "Relay", "Rotary Encoder", "Servo motor", "Shock sensor", "Switches", "TFT1.8", "Touch sensor", "Ultrasonic sensor", "Vibrations motor"]'
+//% subcategories='["7-Segment Display", "Analog-Digital Converter", "Barometer", "Button matrix", "Buzzer", "Color-Sensor", "DHT11", "DS18B20", "EEPROM", "Gyroscope", "Hall sensor", "IR Receiver", "Joystick", "LCD16x2", "LDR", "Light barrier", "NTC", "OLED Display", "PIR Sensor", "PWM Fan", "Potentiometer", "MFRC522 RFID", "RGB Matrix", "RTC", "Relay", "Rotary Encoder", "Servo motor", "Shock sensor", "Sound sensor", Switches", "TFT1.8", "Touch sensor", "Ultrasonic sensor", "Vibrations motor"]'
 namespace JoyPiAdvanced {
     let advanced_revision = 0;
     const fixed_i2c_devices = [0x10, 0x21, 0x22, 0x3C, 0x5A, 0x68, 0x70, 0x77]
@@ -24,7 +24,6 @@ namespace JoyPiAdvanced {
      * Initialize the Joy-Pi Advanced so everything is set up
      */
     //% block="initialize Joy-Pi Advanced"
-    //% subcategory="Set-Up Advanced"
     //% weight=100
     export function initializeAdvanced() {
         const i2c_devices = getI2CDevices();
@@ -46,7 +45,6 @@ namespace JoyPiAdvanced {
      * @param Version of used Joy-Pi Advanced
      */
     //% block="set Joy-Pi Advanced to %JoyPiAdvancedRevision"
-    //% subcategory="Set-Up Advanced"
     //% weight=90
     //% version.defl=JoyPiAdvancedRevision.rev2_0
     export function setAdvancedRevision(version: JoyPiAdvancedRevision) {
