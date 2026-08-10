@@ -39,7 +39,11 @@
         //% block="Green Yellow"
         greenyellow = 0x0FCF,
         //% block="Pink"
-        pink = 0xF0FF
+        pink = 0xF0FF,
+        //% block="Gold"
+        gold = 0x06BF,
+        //% block="Brown"
+        brown = 0x09eb
     }
       
   namespace JoyPiAdvanced {
@@ -569,7 +573,7 @@
                   startX = endX
                   endX = temp
               }
-              tftDrawLine(startX, currentY, endX - startX + 1, currentY, color)
+              tftDrawLine(startX, currentY, endX, currentY, color)
           }
           // Lower half
           const startY = lastY + 1
@@ -586,7 +590,7 @@
                   startX = endX
                   endX = temp
               }
-              tftDrawLine(startX, currentY, endX - startX + 1, currentY, color)
+              tftDrawLine(startX, currentY, endX, currentY, color)
           }
       } 
 
@@ -605,6 +609,8 @@
        //% x.min=0 x.max=TFTWIDTH
        //% y.min=0 y.max=TFTHEIGHT
        //% zoom.min=1 zoom.max=5
+       //% color.defl=JoyPiAdvancedTFTColor.white
+       //% bgColor.defl=JoyPiAdvancedTFTColor.black
        export function tftShowString(text: string, x: number, y:number, zoom: number, color: JoyPiAdvancedTFTColor, bgColor: JoyPiAdvancedTFTColor): void {
            let hiColor = colorHigh(color)
            let loColor = colorLow(color)
@@ -698,6 +704,24 @@
       export function tftOn(): void {
           send0(TFTCommands.DISPON)
       }
- 
- 
+
+      /**
+         * Return pixel height of TFT display
+         */
+      //% block="height of TFT display"
+      //% subcategory="TFT1.8"
+      //% weight=50
+      export function tftGetHeight() {
+          return TFTHEIGHT
+      }
+
+      /**
+           * Return pixel width of TFT display
+           */
+      //% block="width of TFT display"
+      //% subcategory="TFT1.8"
+      //% weight=50
+      export function tftGetWidth() {
+          return TFTWIDTH
+      }
   }
