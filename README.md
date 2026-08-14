@@ -72,12 +72,37 @@ The Joy-Pi Advanced combines the following modules:
 
 ### Initialization of the Advanced
 
+There are already multiple versions of the Joy-Pi Advanced released. Some of them had hardware changes. To ensure this repository is working with your Joy-Pi Advanced, one of the following methods has to be executed beforehand.
+
+#### Automatic Initialization
+
+This method sets the revision of your Joy-Pi Advanced automatically.
+
+```typescript
+JoyPiAdvanced.initializeAdvanced()
+```
+
+#### Setting revision automatically
+This method sets the revision of your Joy-Pi Advanced manually. You can find your revision on the main board of the Joy-Pi Advanced.
+
+| `JoyPiAdvancedRevision`   |   Revision of Joy-Pi Advanced |
+|:------------------------:|:----------------------------------:|
+| `rev1_0`        | Revision 1.0 |
+| `rev1_1`        | Revision 1.1 |
+| `rev2_0`        | Revision 2.0 (Joy-Pi Advanced 2) |
+
+```typescript
+JoyPiAdvanced.setAdvancedRevision(JoyPiAdvancedRevision.rev2_0)
+JoyPiAdvanced.setAdvancedRevision(JoyPiAdvancedRevision.rev1_1)
+JoyPiAdvanced.setAdvancedRevision(JoyPiAdvancedRevision.rev1_0)
+```
+
 ### 7-Segment display
 
 A 7-segment display is able to show numbers (or also characters) by displaying individual segments. A block contains 7 segments and an additional point. 7 segment displays are often used in watches, for example.
 
 > [!NOTE]
->*The 7-segment display is connected via I2C on address 0x70.
+> The 7-segment display is connected via I2C on address 0x70.
 
 #### Initialization
 
@@ -91,6 +116,11 @@ JoyPiAdvanced.segmentInit()
 #### Display numbers
 
 Numbers with a length of up to 4 digits can be send to the display. You can additionally set the colon to on or off.
+
+| `JoyPiAdvancedColon`   |   Meaning |
+|:------------------------:|:----------------------------------:|
+| `on`        | Activates colon |
+| `off`        | Disables colon |
 
 ```typescript
 // Show number with colon off
@@ -111,7 +141,8 @@ JoyPiAdvanced.segmentClear()
 
 Since many microcontrollers, like the micro:bit, cannot process analog signals, the Joy-Pi Advanced is equipped with an analog-to-digital converter. This converts analog signals into a digital signal and can thus be conveniently read out by a microcontroller. The ADC has a total of 8 (0 - 7) channels.
 
-**The analog-digital converter is connected via SPI on P16 (CS).**
+> [!NOTE]
+> The analog-digital converter is connected via SPI on P16 (CS).
 
 #### Read values
 
@@ -126,11 +157,11 @@ JoyPiAdvanced.adcReadValue(3)
 
 #### Read voltages
 
-Instead of values, you can also directly read the raw applied voltage:
+Instead of values, you can also directly read the raw applied voltage or calculate the already measured digital value into voltage:
 
 ```typescript
 // Read voltage on channel no. 0
-JoyPiAdvanced.adcReadVoltage(0)
+JoyPiAdvanced.adcReadVoltage(0, adcValue)
 // Read voltage on channel no. 3
 JoyPiAdvanced.adcReadVoltage(3)
 ```
@@ -139,7 +170,8 @@ JoyPiAdvanced.adcReadVoltage(3)
 
 A barometer is a measuring device for determining the static air pressure. The barometer used in the Joy-Pi Advanced is additionally able to measure the temperature.
 
-**The barometer is connected via I2C on address 0x77.**
+> [!NOTE]
+> The barometer is connected via I2C on address 0x77.
 
 #### Initialization
 
@@ -168,12 +200,21 @@ Read the temperature measurement from the barometer in Celsius.
 JoyPiAdvanced.barometerGetTemperature()
 ```
 
+#### Calculate altitude
+
+You can calculate the altitude with the measured pressure of the barometer. Therefore, your local QNH should be given the method. Alternatively, you can use the mean sea level pressure, which is set as the default value.
+
+```typescript
+// Read altitude from barometer
+JoyPiAdvanced.barometerGetAltitude(1013.25)
+```
 
 ### Button matrix
 
 The button matrix is a keypad consisting of a total of 16 buttons arranged in a 4 x 4 matrix.
 
-**The button matrix is connected via I2C on address 0x22.**
+> [!NOTE]
+> The button matrix is connected via I2C on address 0x22.
 
 #### Initialization
 
@@ -190,7 +231,7 @@ Returns the value number when a button is pressed. If no button is pressed, -1 i
 
 ```typescript
 // Return button value number
-JoyPiAdvanced.buttonmatrixPressed()
+JoyPiAdvanced.buttonmatrixIsButtonPressed()
 ```
 
 #### Button value
@@ -199,18 +240,39 @@ On the silk screen of the Joy-Pi Advanced, the button matrix is labeled with 0-9
 
 ```typescript
 // Return button value
-JoyPiAdvanced.buttonMatrixPressedValue()
+JoyPiAdvanced.buttonmatrixGetKey()
+```
+
+
+#### Button code
+
+This method returns the location of the pressed button. Therefore, it is a code `column|row` returned.
+
+```typescript
+// Return button code
+JoyPiAdvanced.buttonmatrixGetButtonCode()
+```
+
+#### Button matrix as calculator
+
+This block uses the button matrix as a calculator. It returns the current input. If `=`is pressed, the term is calculated. If `#`is pressed, the term is cleared.
+
+```typescript
+// Use button matrix as calculator
+let term = ""
+term = JoyPiAdvanced.buttonmatrixCalcsulate()
 ```
 
 ### Buzzer
 
 The buzzer is an acoustig signal generator, which is controlled with a frequency and thus emits a sound. The frequency determines the pitch of the tone.
 
-**The buzzer is connected to P7.**
+> [!NOTE]
+>The buzzer is connected to P7.
 
 #### Turn buzzer on
 
-You can turn the buzzer on by using the **JoyPiAdvanced.buzzerOn(frequency)** function. The **frequency** can be a value between 100 and 20000.
+You can turn the buzzer on by using the `JoyPiAdvanced.buzzerOn(frequency)` function. The `frequency` can be a value between 100 and 20000.
 
 ```typescript
 // Turn buzzer on with a frequency of 2000
@@ -219,7 +281,7 @@ JoyPiAdvanced.buzzerOn(2000)
 
 #### Turn buzzer off
 
-You can turn the buzzer off by using the **JoyPiAdvanced.buzzerOff()** function.
+You can turn the buzzer off by using this function.
 
 ```typescript
 JoyPiAdvanced.buzzerOff()
@@ -229,7 +291,8 @@ JoyPiAdvanced.buzzerOff()
 
 The color sensor allows you to determine the composition (red, green, blue and white) of colors. The module outputs a signal which will be converted into the corresponding color values. Please note that the color sensor can **not** measure the exact composition of colors. Instead it gives you an indication to which base color the color tends.
 
-**The color sensor is connected via I2C on address 0x10.**
+> [!NOTE]
+>The color sensor is connected via I2C on address 0x10.
 
 #### Initialization
 
@@ -240,9 +303,43 @@ Because the color sensor is an I2C-device, an initial initialization is required
 JoyPiAdvanced.initColorSensor()
 ```
 
-#### Detect colors
+#### Integration time
+This method set the integration time of the sensor. It determines how fast the sensor is reading its values. Possible settings are shown in the table below:
 
-You can detect the intensity of the base colors with the following functions: **JoyPiAdvanced.colorSensorGetRed()**, **JoyPiAdvanced.colorSensorGetGreen()**, **JoyPiAdvanced.colorSensorGetBlue()** and **JoyPiAdvanced.colorSensorGetWhite()**.
+| `JoyPiAdvancedColorSensor_IntegrationTime`   |                Duration of integration time          |
+|:------------------------:|:----------------------------------:|
+| `ms_40`        | 40 ms  |
+| `ms_80`        | 80 ms  |
+| `ms_160`        | 160 ms  |
+| `ms_320`        | 320 ms  |
+| `ms_640`        | 640 ms  |
+| `ms_1280`        | 1280 ms  |
+
+
+```typescript
+// set integration time
+JoyPiAdvanced.colorSensorSetIntegrationTime(JoyPiAdvancedColorSensor_IntegrationTime.ms_160)
+```
+
+#### Set modes of sensor
+The color sensor can be used in two different modes. These can be set up with the following blocks:
+
+##### Auto mode
+```typescript
+// set color sensor to auto mode
+JoyPiAdvanced.colorSensorAutoMode()
+```
+##### Force mode
+```typescript
+// set color sensor to force mode
+JoyPiAdvanced.colorSensorForceMode()
+```
+
+#### Detect colors
+The data from the sensor can be read from different blocks.
+
+##### Single colors
+You can detect the intensity of the base colors with the following functions.
 
 ```typescript
 // Get red intensity
@@ -255,22 +352,66 @@ JoyPiAdvanced.colorSensorGetBlue()
 JoyPiAdvanced.colorSensorGetWhite()
 ```
 
+##### All colors
+You can read all color values with one block. This method returns an array with the detected color values `[red, green, blue, white]`. 
+```typescript
+// get RGBW values
+JoyPiAdvanced.colorSensorGetRGBW()
+```
+
+##### All colors & dominant color
+This block adds to the previous method the dominant power. Therefore, it returns additionally the dominant color as a string`[dominant color, red, green, blue, white}`.
+
+```typescript
+// get dominant color and RGBW values
+JoyPiAdvanced.colorSensorReadAll()
+```
+
+#### Disable sensor
+This block disables the color sensor again.
+```typescript
+// disable color sensor
+JoyPiAdvanced.disableColorSensor()
+```
 
 ### DHT11 temperature & humidity sensor
 
 The DHT11 is a combination sensor which can measure temperatures (0 - 50 degrees celsius) and humidity (20 - 90 %).
 
-**The DHT11 sensor is connected to P8.**
+> [!NOTE]
+>The DHT11 sensor is connected to P8.
 
 #### Measurement values
-
-You can use **JoyPiAdvanced.dht11GetTemperature()** and **JoyPiAdvanced.dht11GetHumidity()** to receive the corresponding measurement values.
+This block triggers a measurement from the DHT11 and returns an array with temperature and humidity `[temperature, humidity]`.
 
 ```typescript
-// Measure temperature
-JoyPiAdvanced.dht11GetTemperature()
-// Measure humidity
-JoyPiAdvanced.dht11GetHumidity()
+// Measure temperature & humidity and return it
+JoyPiAdvanced.dht11GetMeasurement()
+```
+
+#### Start measurement
+This block triggers a measurement from the DHT11. It also returns if the triggered measurement was successful or not.
+
+```typescript
+// Measure temperature & humidity
+JoyPiAdvanced.dht11ReadSensor()
+```
+
+#### Successful measurement
+This block returns false if last measurement was unsuccessful and true if it was successfull.
+
+```typescript
+// check if last measurement was successfull
+JoyPiAdvanced.dht11WasSuccessful()
+```
+
+#### Last measured values
+You can use `JoyPiAdvanced.dht11GetTemperature()` and `JoyPiAdvanced.dht11GetHumidity()` to receive the **last** corresponding measurement values.
+```typescript
+// Return humidity
+JoyPiAdvanced.dht11GetLastHumidity()
+// Return temperature
+JoyPiAdvanced.dht11GetLastTemperature()
 ```
 
 ### DS18B20 temperature sensor
