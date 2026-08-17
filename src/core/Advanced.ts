@@ -42,7 +42,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Set version of Joy-Pi Advanced
-     * @param Version of used Joy-Pi Advanced
+     * @param version of used Joy-Pi Advanced
      */
     //% block="set Joy-Pi Advanced to %JoyPiAdvancedRevision"
     //% weight=90
