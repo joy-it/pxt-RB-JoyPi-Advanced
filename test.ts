@@ -1,7 +1,3 @@
-// Read X Axis from Gyroscope
-JoyPiAdvanced.gyroscopeInit()
-let gyroscopeXAxis = JoyPiAdvanced.gyroscopeGetX()
-
 // Measure voltage off hall sensor
 let hallSensorVoltage = JoyPiAdvanced.hallSensorGetMagneticField()
 
