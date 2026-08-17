@@ -9,7 +9,7 @@
     },
     "files": [
         "README.md",
-        
+
         "docs/_locales/de/pxt-rb-joypi-advanced-jsdoc-strings.json",
         "docs/_locales/de/pxt-rb-joypi-advanced-strings.json",
         "docs/_locales/en/pxt-rb-joypi-advanced-jsdoc-strings.json",
@@ -57,6 +57,7 @@
         "src/sensors/Ultrasonic-HC-SR04.ts"
     ],
     "testFiles": [
+        "tests/core/testAdvanced.ts",
         "test.ts"
     ],
     "public": true,
