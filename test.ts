@@ -1,8 +1,3 @@
-// Read Pressure & temperature from barometer
-JoyPiAdvanced.barometerInit()
-let barometerPressure = JoyPiAdvanced.barometerGetPressure()
-let barometerTemperature = JoyPiAdvanced.barometerGetTemperature()
-
 // Get pressed button from matrix
 JoyPiAdvanced.buttonmatrixInit()
 let buttonmatrixButton = JoyPiAdvanced.buttonmatrixGetKey()
