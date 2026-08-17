@@ -124,6 +124,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Set scale factor of gyroscope
+     * @param scale scale factor to which the gyroscope will be set
      */
     //% block="set scale factor of gyroscope to %scale"
     //% weight=10
