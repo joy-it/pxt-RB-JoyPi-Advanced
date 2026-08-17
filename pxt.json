@@ -58,6 +58,7 @@
     ],
     "testFiles": [
         "tests/core/testAdvanced.ts",
+        "tests/modules/testADC-TLA2518.ts",
         "test.ts"
     ],
     "public": true,

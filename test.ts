@@ -1,7 +1,3 @@
-// Read ADC value and voltage from channel 1
-let adcChannel1 = JoyPiAdvanced.adcReadValue(1)
-let adcChannel1Voltage = JoyPiAdvanced.adcReadVoltage(1)
-
 // Read Pressure & temperature from barometer
 JoyPiAdvanced.barometerInit()
 let barometerPressure = JoyPiAdvanced.barometerGetPressure()
