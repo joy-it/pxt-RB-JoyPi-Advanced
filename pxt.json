@@ -1,6 +1,6 @@
 {
     "name": "pxt-rb-joypi-advanced",
-    "version": "1.0.9",
+    "version": "2.0.0",
     "description": "This package provides an all-in-one library which unites all sensors and modules for the Joy-IT RB-JoyPi-Advanced.",
     "license": "MIT",
     "dependencies": {
