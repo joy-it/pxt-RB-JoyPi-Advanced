@@ -1,6 +1,3 @@
-// Measure voltage off hall sensor
-let hallSensorVoltage = JoyPiAdvanced.hallSensorGetMagneticField()
-
 // Get pressed button from IR receiver
 JoyPiAdvanced.initIrReceiver()
 let pressedIRButton = JoyPiAdvanced.irGetValue()

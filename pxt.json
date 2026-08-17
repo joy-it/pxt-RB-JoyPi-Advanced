@@ -71,6 +71,7 @@
         "tests/sensors/testDHT11.ts",
         "tests/sensors/testDS18B20.ts",
         "tests/sensors/testGyroscope-ICG1020S.ts",
+        "tests/sensors/testHallSensor.ts",
 
         "test.ts"
     ],
