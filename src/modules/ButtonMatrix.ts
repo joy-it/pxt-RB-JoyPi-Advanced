@@ -315,7 +315,7 @@ namespace JoyPiAdvanced  {
 
     /**
      * Calculate term which is input via button Matrix
-     * @param current term
+     * @param term current term 
      */
     //% block="Calculate %term of button matrix"
     //% weight=60
