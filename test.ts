@@ -1,8 +1,3 @@
-// Turn on buzzer - wait 5 seconds - turn off buzzer
-JoyPiAdvanced.buzzerOn(2000)
-pause(5000)
-JoyPiAdvanced.buzzerOff()
-
 // Measure red with color sensor
 JoyPiAdvanced.initColorSensor()
 let colorSensorRed = JoyPiAdvanced.colorSensorGetRed()

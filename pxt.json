@@ -63,6 +63,7 @@
 
         "tests/modules/testADC-TLA2518.ts",
         "tests/modules/testButtonMatrix.ts",
+        "tests/modules/testBuzzer.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
 
