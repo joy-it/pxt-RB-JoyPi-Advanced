@@ -168,6 +168,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Sets integration time of colour sensor
+     * @param int_time integration which will the colour sensor be set to
      */
     //% block="set color sensor integration time %int_time"
     //% subcategory="Color-Sensor"
