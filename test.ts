@@ -1,6 +1,3 @@
-// Check if light barrier is triggered
-let lightBarrierIsTriggered = JoyPiAdvanced.lightBarrierIsTriggered()
-
 // Measure temperature with NTC
 let ntcTemperature = JoyPiAdvanced.ntcGetRawVoltage()
 
