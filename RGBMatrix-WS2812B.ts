@@ -174,7 +174,7 @@ namespace JoyPiAdvanced {
      * @param green Green value from 0 (no brightness of the green base color) to 255 (full brightness of the green base color)
      * @param blue Blue value from 0 (no brightness of the blue base color) to 255 (full brightness of the blue base color)
      */
-    //% block="set single pixel on RGB matrix on position x: %x y: %y to color: Red: %r Green: %g Blue: %b"
+    //% block="set single pixel on RGB matrix on position x: %x y: %y to color: Red: %red Green: %green Blue: %blue"
     //% subcategory="RGB Matrix"
     //% weight=80
     //% x.min=0 x.max=7
