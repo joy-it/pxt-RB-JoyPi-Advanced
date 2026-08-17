@@ -66,6 +66,7 @@
         "tests/modules/testBuzzer.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
+        "tests/sensors/testColorSensor-VEML6040.ts",
 
         "test.ts"
     ],

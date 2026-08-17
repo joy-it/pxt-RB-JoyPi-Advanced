@@ -1,7 +1,3 @@
-// Measure red with color sensor
-JoyPiAdvanced.initColorSensor()
-let colorSensorRed = JoyPiAdvanced.colorSensorGetRed()
-
 // Measure temperature & humidity with DHT11
 let dht_values = JoyPiAdvanced.dht11GetMeasurement()
 if (JoyPiAdvanced.dht11WasSuccessful()) {
