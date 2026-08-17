@@ -75,6 +75,7 @@
         "tests/sensors/testGyroscope-ICG1020S.ts",
         "tests/sensors/testHallSensor.ts",
         "tests/sensors/testIR-TL1838.ts",
+        "tests/sensors/testLDR.ts",
 
         "test.ts"
     ],

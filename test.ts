@@ -1,6 +1,3 @@
-// Measure light intensity with LDR
-let ldrLight = JoyPiAdvanced.ldrGetRawVoltage()
-
 // Check if light barrier is triggered
 let lightBarrierIsTriggered = JoyPiAdvanced.lightBarrierIsTriggered()
 
