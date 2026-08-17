@@ -1,6 +1,3 @@
-// Get Y Value from joystick
-let joystickYValue = JoyPiAdvanced.joystickGetYValue()
-
 // Show "Hello World" on 16x2 display
 JoyPiAdvanced.lcd16x2Init()
 JoyPiAdvanced.lcd16x2ShowText('Hello World', 0, 0)
