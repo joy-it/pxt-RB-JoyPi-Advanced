@@ -1,8 +1,3 @@
-// Show "1234" on 7-segment display, then clear display
-JoyPiAdvanced.segmentInit()
-JoyPiAdvanced.segmentWriteNumber(1234, JoyPiAdvancedColon.off)
-JoyPiAdvanced.segmentClear()
-
 // Read ADC value and voltage from channel 1
 let adcChannel1 = JoyPiAdvanced.adcReadValue(1)
 let adcChannel1Voltage = JoyPiAdvanced.adcReadVoltage(1)
