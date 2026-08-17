@@ -149,6 +149,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Returns the corresponding button of remote control
+     * @param ir_code code which was received with irGetValue() 
      */
     //% block="%ir_code as button of remote control"
     //% subcategory="IR Receiver"
