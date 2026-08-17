@@ -36,6 +36,7 @@ namespace JoyPiAdvanced {
     //% block="read byte from EEPROM address %address"
     //% subcategory="EEPROM"
     //% weight=99
+    //% address.min=0 address.max=32767
     export function eepromRead(address: number): number {
         eepromCheckAdress()
         let buffer = pins.createBuffer(2)
