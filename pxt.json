@@ -64,6 +64,7 @@
         "tests/modules/testADC-TLA2518.ts",
         "tests/modules/testButtonMatrix.ts",
         "tests/modules/testBuzzer.ts",
+        "tests/modules/testEEPROM-AT24C256.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
         "tests/sensors/testColorSensor-VEML6040.ts",

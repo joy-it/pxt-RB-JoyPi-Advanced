@@ -1,7 +1,3 @@
-// Write "12345 to address 5 on EEPROM - then read from eeprom
-JoyPiAdvanced.eepromWrite(12345, 5)
-let eepromValue = JoyPiAdvanced.eepromRead(5)
-
 // Read X Axis from Gyroscope
 JoyPiAdvanced.gyroscopeInit()
 let gyroscopeXAxis = JoyPiAdvanced.gyroscopeGetX()
