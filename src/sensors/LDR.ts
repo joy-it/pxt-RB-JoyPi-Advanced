@@ -14,6 +14,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Calculates lux value from raw voltage value
+     * @param U2 raw voltage from reading LDR
      */
     //% block="calculate lux with %U2"
     //% subcategory="LDR"
