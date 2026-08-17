@@ -61,6 +61,7 @@ namespace JoyPiAdvanced {
   
     /**
      * Calculates the current RPM at the light barrier. This is usally combined with the stepper motor.
+     * @param timeInterval time in seconds from which RPM will be calculated e.g. 5s
      */
     //% block="light barrier calculated RPM in %timeInterval second interval"
     //% subcategory="Light barrier"
