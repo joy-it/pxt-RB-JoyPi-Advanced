@@ -68,6 +68,7 @@
         "tests/sensors/testBarometer-MS5607.ts",
         "tests/sensors/testColorSensor-VEML6040.ts",
         "tests/sensors/testDHT11.ts",
+        "tests/sensors/testDS18B20.ts",
 
         "test.ts"
     ],

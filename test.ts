@@ -1,6 +1,3 @@
-// Measure temperature with DS18B20
-let DS18B20Temperature = JoyPiAdvanced.readDS18B20()
-
 // Write "12345 to address 5 on EEPROM - then read from eeprom
 JoyPiAdvanced.eepromWrite(12345, 5)
 let eepromValue = JoyPiAdvanced.eepromRead(5)
