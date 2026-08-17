@@ -9,7 +9,7 @@
         //% block="Dark Green"
         darkgreen = 0x0A00,
         //% block="Dark Cyan"
-        darkcyan = 0x530F,
+        darkcyan = 0xA530,
         //% block="Maroon"
         maroon = 0x3270,
         //% block="Purple"
@@ -17,13 +17,13 @@
         //% block="Olive"
         olive = 0x030F, 
         //% block="Light Grey"
-        lightGrey = 0x330,
+        lightGrey = 0xDEB7,
         //% block="Dark Grey"
-        darkGrey = 0x0007,
+        darkGrey = 0x4249,
         //% block="Blue"
-        blue = 0xF00F,
+        blue = 0xF800,
         //% block="Green"
-        green = 0x0F0F,
+        green = 0x07E0,
         //% block="Cyan"
         cyan = 0xFF0F,
         //% block="Red"
@@ -37,13 +37,13 @@
         //% block="Orange"
         orange = 0x02FF,
         //% block="Green Yellow"
-        greenyellow = 0x0FCF,
+        greenyellow = 0x0F0F,
         //% block="Pink"
         pink = 0xF0FF,
         //% block="Gold"
         gold = 0x06BF,
         //% block="Brown"
-        brown = 0x09eb
+        brown = 0x09EB
     }
       
   namespace JoyPiAdvanced {
