@@ -58,6 +58,9 @@
     ],
     "testFiles": [
         "tests/core/testAdvanced.ts",
+
+        "tests/displays/test7Segment-HT16K33.ts",
+
         "tests/modules/testADC-TLA2518.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
