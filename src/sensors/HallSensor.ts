@@ -11,6 +11,7 @@ namespace JoyPiAdvanced {
 
     /**
      * returns true if value of hall sensor fits north pole
+     * @param value digital value from hall sensor
      */
     //% block="%value is a north pole"
     //% subcategory="Hall sensor"
@@ -22,6 +23,7 @@ namespace JoyPiAdvanced {
 
     /**
      * returns true if value of hall sensor fits south pole
+     * @param value digital value from hall sensor
      */
     //% block="%value is a south pole"
     //% subcategory="Hall sensor"
