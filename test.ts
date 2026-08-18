@@ -1,6 +1,3 @@
-// Read current year from RTC
-let rtcCurrentYear = JoyPiAdvanced.rtcGetYear()
-
 // Turn on relay
 JoyPiAdvanced.relayOn()
 
