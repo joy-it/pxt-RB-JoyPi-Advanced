@@ -1,6 +1,3 @@
-// Measure temperature with NTC
-let ntcTemperature = JoyPiAdvanced.ntcGetRawVoltage()
-
 // Draw 10x10 rectangle on OLED
 JoyPiAdvanced.oledInit()
 JoyPiAdvanced.oledDrawRectangle(0, 0, 10, 10)
