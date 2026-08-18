@@ -1,7 +1,3 @@
-// Read from RFID tag
-JoyPiAdvanced.rfidInit()
-JoyPiAdvanced.rfidReadText()
-
 // Set RGB matrix to full red
 JoyPiAdvanced.rgbMatrixShowColor(255, 0, 0)
 

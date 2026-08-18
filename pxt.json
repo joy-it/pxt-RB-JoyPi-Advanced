@@ -70,6 +70,7 @@
         "tests/modules/testJoystick.ts",
         "tests/modules/testPWMFan.ts",
         "tests/modules/testPotentiometer.ts",
+        "tests/modules/testRFID-MFRC522.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
         "tests/sensors/testColorSensor-VEML6040.ts",
