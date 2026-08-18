@@ -1,6 +1,3 @@
-// Set RGB matrix to full red
-JoyPiAdvanced.rgbMatrixShowColor(255, 0, 0)
-
 // Read current year from RTC
 let rtcCurrentYear = JoyPiAdvanced.rtcGetYear()
 
