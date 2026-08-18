@@ -1,6 +1,3 @@
-// Check state of PIR sensor
-let pirMotion = JoyPiAdvanced.pirCheckMotion()
-
 // Set pwm fan to 50% speed
 JoyPiAdvanced.pwmFanSetSpeed(50)
 

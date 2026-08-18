@@ -79,6 +79,7 @@
         "tests/sensors/testLDR.ts",
         "tests/sensors/testLightBarrier.ts",
         "tests/sensors/testNTC.ts",
+        "tests/sensors/testPIR.ts",
 
         "test.ts"
     ],
