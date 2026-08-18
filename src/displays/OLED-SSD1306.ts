@@ -468,6 +468,10 @@ namespace JoyPiAdvanced {
      */
     //% block="draw line from x: %x0 and y: %y0 to x: %x1 and y: %y1 on OLED display"
     //% subcategory="OLED Display"
+    //% x0.min=0 x0.max=128
+    //% y0.min=0 y0.max=64
+    //% x1.min=0 x1.max=128
+    //% y1.min=0 y1.max=64
     //% weight=70
     export function oledDrawLine(x0: number, y0: number, x1: number, y1: number) {
       let pixels: Array<Array<number>> = []
@@ -534,11 +538,13 @@ namespace JoyPiAdvanced {
      * @param width width of the rectangle
      * @param height height of the rectangle
      */
-    //% block="draw rectangle at x: %x0 and y: %y0 with width: %width and height: %height on OLED display"
+    //% block="draw rectangle at x: %x and y: %y with width: %width and height: %height on OLED display"
     //% subcategory="OLED Display"
     //% weight=60
     //% width.min=0
     //% height.min = 0
+    //% x.min=0 x.max=128
+    //% y.min=0 y.max=64
     export function oledDrawRectangle(x: number, y: number, width: number, height: number) {
         let pixels: Array<Array<number>> = []
         const right = x + width -1
@@ -562,6 +568,8 @@ namespace JoyPiAdvanced {
      */
     //% block="draw circle at x: %x and y: %y with radius: %radius on OLED display"
     //% subcategory="OLED Display"
+    //% x.min=0 x.max=128
+    //% y.min=0 y.max=64
     //% weight=50
     export function oledDrawCircle(x: number, y: number, radius: number) {
       let pixels: Array<Array<number>> = []
