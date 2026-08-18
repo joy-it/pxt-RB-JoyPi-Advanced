@@ -12,6 +12,7 @@ namespace JoyPiAdvanced {
   
     /**
      * calculate temperature with NTC
+     * @param raw_value read voltage from NTC
      */
     //% block="calculate temperature of NTC with %raw_value"
     //% subcategory="NTC"
