@@ -75,6 +75,8 @@ namespace JoyPiAdvanced {
 
   /**
    * Event that is executed as soon as the state of PIR changes
+   * @param mode The state of the PIR sensor that triggers the event
+   * @param handler The code to run when the event is triggered
    */
   //% block="When PIR recognizes %mode"
   //% subcategory="PIR Sensor"
