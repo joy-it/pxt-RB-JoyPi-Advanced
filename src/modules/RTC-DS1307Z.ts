@@ -39,7 +39,7 @@ namespace JoyPiAdvanced {
      * @param year The current year
      * @param month The current month
      * @param day The current day 
-     * @param weekday The current weekday
+     * @param weekday The current weekday as a number 
      * @param hour  The current hour
      * @param minute The current minute
      * @param second The current second
@@ -96,7 +96,7 @@ namespace JoyPiAdvanced {
   
     /**
      * Sets the weekday to the RTC
-     * @param weekday The current weekday
+     * @param weekday The current weekday as number
      */
     //% block="set RTC weekday %weekday"
     //% subcategory="RTC"
