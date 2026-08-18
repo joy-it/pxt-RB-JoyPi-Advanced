@@ -1,6 +1,3 @@
-// Get current voltage of potentiomer
-let potentiometerVoltage = JoyPiAdvanced.potentiometerGetValue()
-
 // Read from RFID tag
 JoyPiAdvanced.rfidInit()
 JoyPiAdvanced.rfidReadText()

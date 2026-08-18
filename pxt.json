@@ -69,6 +69,7 @@
         "tests/modules/testEEPROM-AT24C256.ts",
         "tests/modules/testJoystick.ts",
         "tests/modules/testPWMFan.ts",
+        "tests/modules/testPotentiometer.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
         "tests/sensors/testColorSensor-VEML6040.ts",
