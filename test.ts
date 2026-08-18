@@ -1,6 +1,3 @@
-// Set pwm fan to 50% speed
-JoyPiAdvanced.pwmFanSetSpeed(50)
-
 // Get current voltage of potentiomer
 let potentiometerVoltage = JoyPiAdvanced.potentiometerGetValue()
 
