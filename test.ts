@@ -1,7 +1,3 @@
-// Draw 10x10 rectangle on OLED
-JoyPiAdvanced.oledInit()
-JoyPiAdvanced.oledDrawRectangle(0, 0, 10, 10)
-
 // Check state of PIR sensor
 let pirMotion = JoyPiAdvanced.pirCheckMotion()
 
