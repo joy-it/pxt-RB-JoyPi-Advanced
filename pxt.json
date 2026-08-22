@@ -95,8 +95,7 @@
         "tests/sensors/testShockSensor.ts",
         "tests/sensors/testTouchSensor-MPR121.ts",
         "tests/sensors/testUltrasonic-HC-SR04.ts",
-
-        "test.ts"
+        "tests/sensors/testSoundSensor.ts"
     ],
     "public": true,
     "supportedTargets": [
