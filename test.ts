@@ -1,6 +1,3 @@
-// Turn on relay
-JoyPiAdvanced.relayOn()
-
 // Turn servo motor to degree angle 90
 JoyPiAdvanced.turnMotor(90)
 
