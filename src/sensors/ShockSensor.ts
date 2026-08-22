@@ -63,6 +63,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Event that is executed as soon as a shock is recognized
+     * @param handler The code to run when a shock is recognized
      */
     //% block="When a shock was recognized"
     //% subcategory="Shock sensor"
