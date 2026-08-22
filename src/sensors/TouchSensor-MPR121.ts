@@ -56,6 +56,7 @@ namespace JoyPiAdvanced {
     //% subcategory="Touch sensor"
     //% sensorSelection.min=1 sensorSelection.max=6
     //% weight=90
+    //% sensorSelection.min=1 sensorSelection.max=6
     export function touchSensorCheck(sensorSelection: number) {
       pins.i2cWriteNumber(touchSensorAddr, 0x0000, NumberFormat.UInt8BE)
       let sensorStates = convertToBinary(pins.i2cReadNumber(touchSensorAddr, NumberFormat.UInt8BE))
