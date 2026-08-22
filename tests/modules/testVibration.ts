@@ -1,4 +1,5 @@
-// Turn vibration motor on for 5 seconds
+JoyPiAdvanced.initializeAdvanced()
+
 JoyPiAdvanced.vibrationOn()
-pause(5000)
+basic.pause(1000)
 JoyPiAdvanced.vibrationOff()
