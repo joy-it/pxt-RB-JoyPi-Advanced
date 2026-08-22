@@ -84,6 +84,7 @@ namespace JoyPiAdvanced {
     
     /**
      * Event that is executed as soon as a sound is recognized
+     * @param handler The code to run when a sound is recognized
      */
     //% block="When a sound was recognized"
     //% subcategory="Sound sensor"
