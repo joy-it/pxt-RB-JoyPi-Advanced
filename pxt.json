@@ -63,6 +63,7 @@
         "tests/displays/testLCD16x2.ts",
         "tests/displays/testOLED-SSD1306.ts",
         "tests/displays/testRGBMatrix-WS2812B.ts",
+        "tests/displays/testTFT18.ts",
 
         "tests/modules/testADC-TLA2518.ts",
         "tests/modules/testButtonMatrix.ts",

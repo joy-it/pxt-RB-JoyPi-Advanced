@@ -1,7 +1,3 @@
-// Show blue rectangle on TFT
-JoyPiAdvanced.tftInit()
-JoyPiAdvanced.tftDrawRectangle(10, 10, 50, 20, JoyPiAdvancedTFTColor.blue)
-
 // Check touch sensor no.5
 JoyPiAdvanced.touchsensorInit()
 let touchsensorState = JoyPiAdvanced.touchSensorCheck(5)
