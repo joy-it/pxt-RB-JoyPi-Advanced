@@ -91,6 +91,7 @@
         "tests/sensors/testNTC.ts",
         "tests/sensors/testPIR.ts",
         "tests/sensors/testShockSensor.ts",
+        "tests/sensors/testTouchSensor-MPR121.ts",
 
         "test.ts"
     ],

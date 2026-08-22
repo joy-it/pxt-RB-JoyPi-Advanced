@@ -1,7 +1,3 @@
-// Check touch sensor no.5
-JoyPiAdvanced.touchsensorInit()
-let touchsensorState = JoyPiAdvanced.touchSensorCheck(5)
-
 // Get ultrasonic distance
 let ultrasonicDistance = JoyPiAdvanced.measureDistance()
 
