@@ -79,6 +79,7 @@
         "tests/modules/testStepper-ULN2003.ts",
         "tests/modules/testSwitches.ts",
         "tests/modules/testVibration.ts",
+        "tests/modules/testRotaryEncoder.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
         "tests/sensors/testColorSensor-VEML6040.ts",
