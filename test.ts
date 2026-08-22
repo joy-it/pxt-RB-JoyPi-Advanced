@@ -1,6 +1,3 @@
-// Read current state of shock sensor
-let shocksensorIsTriggered = JoyPiAdvanced.shocksensorCheck()
-
 // Turn stepper motor clockwise by 10 steps
 JoyPiAdvanced.stepperRotate(JoypiAdvancedStepperDirection.clockwise, 10, JoyPiAdvancedStepunit.steps)
 

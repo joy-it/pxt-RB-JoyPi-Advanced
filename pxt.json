@@ -87,6 +87,7 @@
         "tests/sensors/testLightBarrier.ts",
         "tests/sensors/testNTC.ts",
         "tests/sensors/testPIR.ts",
+        "tests/sensors/testShockSensor.ts",
 
         "test.ts"
     ],
