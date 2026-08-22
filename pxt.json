@@ -74,6 +74,7 @@
         "tests/modules/testRFID-MFRC522.ts",
         "tests/modules/testRTC-DS1307Z.ts",
         "tests/modules/testRelay.ts",
+        "tests/modules/testServo.ts",
 
         "tests/sensors/testBarometer-MS5607.ts",
         "tests/sensors/testColorSensor-VEML6040.ts",

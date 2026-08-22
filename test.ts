@@ -1,6 +1,3 @@
-// Turn servo motor to degree angle 90
-JoyPiAdvanced.turnMotor(90)
-
 // Read current state of shock sensor
 let shocksensorIsTriggered = JoyPiAdvanced.shocksensorCheck()
 
