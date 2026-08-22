@@ -1,6 +1,3 @@
-// Check state of switch no. 2
-let switchState = JoyPiAdvanced.switchCheck(JoyPiAdvancedSWSeelection.switch2)
-
 // Show blue rectangle on TFT
 JoyPiAdvanced.tftInit()
 JoyPiAdvanced.tftDrawRectangle(10, 10, 50, 20, JoyPiAdvancedTFTColor.blue)
