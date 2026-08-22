@@ -113,7 +113,8 @@ namespace JoyPiAdvanced {
 
      /**
       * Event that is executed as soon as the rotary encoder is turned in the corresponding direction
-      * @param JoyPiAdvancedDirection  Direction to be listened to
+      * @param direction  Direction to be listened to
+      * @param handler  Code to run when the event is raised
       */
     //% block="When Rotary Encoder turned in %direction direction"
     //% subcategory="Rotary Encoder"
@@ -124,6 +125,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Event that is executed as soon as the rotary encoder is pressed
+     * @param handler  Code to run when the event is raised
      */
     //% block="When Rotary Encoder pressed"
     //% subcategory="Rotary Encoder"
