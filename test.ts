@@ -1,6 +1,3 @@
-// Turn stepper motor clockwise by 10 steps
-JoyPiAdvanced.stepperRotate(JoypiAdvancedStepperDirection.clockwise, 10, JoyPiAdvancedStepunit.steps)
-
 // Check state of switch no. 2
 let switchState = JoyPiAdvanced.switchCheck(JoyPiAdvancedSWSeelection.switch2)
 
