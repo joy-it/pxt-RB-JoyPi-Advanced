@@ -36,7 +36,7 @@ namespace JoyPiAdvanced {
 
     // Returns the physical pixel position
     // Pixels are mapped row by row
-    function rgbMatrixGetPosition(x: number, y: number){
+    function rgbMatrixPosition(x: number, y: number){
         return y * RGBMATRIX_WIDTH + x
     }
 
@@ -100,7 +100,7 @@ namespace JoyPiAdvanced {
     // check which kind of communication is necessary for RGB matrix
     function rgbMatrixCheckCommunication() {
         checkAdvancedRevision()
-        if (getAdvancedRevision() == JoyPiAdvancedRevision.rev2_0) rgbMatrixCommunication = RGBMatrixCommunicationSelect.i2c
+        if (advancedRevision() == JoyPiAdvancedRevision.rev2_0) rgbMatrixCommunication = RGBMatrixCommunicationSelect.i2c
         else rgbMatrixCommunication = RGBMatrixCommunicationSelect.pin
     }
    
@@ -184,7 +184,7 @@ namespace JoyPiAdvanced {
     //% blue.min=0 blue.max=255
     export function rgbMatrixSetPixel(x: number, y: number, red: number, green: number, blue: number) {
         if (!rgbmatrix_initiliazed) initializeRGBMatrix()
-        const position = rgbMatrixGetPosition(x, y)
+        const position = rgbMatrixPosition(x, y)
         if (rgbMatrixCommunication == RGBMatrixCommunicationSelect.i2c) rgbMatrixI2CSend(RGBMatrixFunction.SET_PIXEL_COLOR, position, red, green, blue)
         else{
             red = rgbMatrixSetBrightnessPin(red)

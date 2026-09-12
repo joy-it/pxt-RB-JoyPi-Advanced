@@ -1,6 +1,6 @@
 JoyPiAdvanced.initializeAdvanced()
 
-let hallSensor_value= JoyPiAdvanced.hallSensorGetMagneticField()
+let hallSensor_value= JoyPiAdvanced.hallSensorMagneticField()
 
 if (JoyPiAdvanced.hallSensorIsNorthPole(hallSensor_value)){
     serial.writeLine("North pole detected")

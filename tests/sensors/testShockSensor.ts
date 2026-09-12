@@ -3,7 +3,7 @@ JoyPiAdvanced.initializeShockSensor()
 
 basic.pause(100)
 
-if (JoyPiAdvanced.shockSensorGetState()) {
+if (JoyPiAdvanced.shockSensorState()) {
     serial.writeLine("Shock detected")
 }
 else {

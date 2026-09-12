@@ -17,7 +17,7 @@ namespace JoyPiAdvanced {
       pins.i2cWriteBuffer(RTCADDR, buffer)
     }
   
-    function getReg(reg: number): number {
+    function reg(reg: number): number {
       pins.i2cWriteNumber(RTCADDR, reg, NumberFormat.UInt8BE)
       return pins.i2cReadNumber(RTCADDR, NumberFormat.UInt8BE)
     }
@@ -148,8 +148,8 @@ namespace JoyPiAdvanced {
     //% block="get RTC year"
     //% subcategory="RTC"
     //% weight=90
-    export function rtcGetYear(): number {
-      return Math.min(hexToDec(getReg(RTCYEAR)), 99) + 2000
+    export function rtcYear(): number {
+      return Math.min(hexToDec(reg(RTCYEAR)), 99) + 2000
     }
   
     /**
@@ -158,8 +158,8 @@ namespace JoyPiAdvanced {
     //% block="get RTC month"
     //% subcategory="RTC"
     //% weight=89
-    export function rtcGetMonth(): number {
-      return Math.max(Math.min(hexToDec(getReg(RTCMONTH)), 12), 1)
+    export function rtcMonth(): number {
+      return Math.max(Math.min(hexToDec(reg(RTCMONTH)), 12), 1)
     }
   
     /**
@@ -168,8 +168,8 @@ namespace JoyPiAdvanced {
     //% block="get RTC day"
     //% subcategory="RTC"
     //% weight=88
-    export function rtcGetDay(): number {
-      return Math.max(Math.min(hexToDec(getReg(RTCDAY)), 31), 1)
+    export function rtcDay(): number {
+      return Math.max(Math.min(hexToDec(reg(RTCDAY)), 31), 1)
     }
   
     /**
@@ -178,8 +178,8 @@ namespace JoyPiAdvanced {
     //% block="get RTC weekday"
     //% subcategory="RTC"
     //% weight=87
-    export function rtcGetWeekday(): number {
-      return Math.max(Math.min(hexToDec(getReg(RTCWEEKDAY)), 7), 1)
+    export function rtcWeekday(): number {
+      return Math.max(Math.min(hexToDec(reg(RTCWEEKDAY)), 7), 1)
     }
   
     /**
@@ -188,8 +188,8 @@ namespace JoyPiAdvanced {
     //% block="get RTC hour"
     //% subcategory="RTC"
     //% weight=86
-    export function rtcGetHour(): number {
-      return Math.min(hexToDec(getReg(RTCHOUR)), 23)
+    export function rtcHour(): number {
+      return Math.min(hexToDec(reg(RTCHOUR)), 23)
     }
   
     /**
@@ -198,8 +198,8 @@ namespace JoyPiAdvanced {
     //% block="get RTC minute"
     //% subcategory="RTC"
     //% weight=85
-    export function rtcGetMinute(): number {
-      return Math.min(hexToDec(getReg(RTCMINUTE)), 59)
+    export function rtcMinute(): number {
+      return Math.min(hexToDec(reg(RTCMINUTE)), 59)
     }
   
     /**
@@ -208,8 +208,8 @@ namespace JoyPiAdvanced {
     //% block="get RTC second"
     //% subcategory="RTC"
     //% weight=84
-    export function rtcGetSecond(): number {
-      return Math.min(hexToDec(getReg(RTCSECOND)), 59)
+    export function rtcSecond(): number {
+      return Math.min(hexToDec(reg(RTCSECOND)), 59)
     }
   
   }

@@ -3,10 +3,10 @@ JoyPiAdvanced.initColorSensor()
 
 function testColorSensorSingleRead() {
     while (true) {
-        let red = JoyPiAdvanced.colorSensorGetRed()
-        let green = JoyPiAdvanced.colorSensorGetGreen()
-        let blue = JoyPiAdvanced.colorSensorGetBlue()
-        let white = JoyPiAdvanced.colorSensorGetWhite()
+        let red = JoyPiAdvanced.colorSensorRed()
+        let green = JoyPiAdvanced.colorSensorGreen()
+        let blue = JoyPiAdvanced.colorSensorBlue()
+        let white = JoyPiAdvanced.colorSensorWhite()
         serial.writeLine("Red: " + convertToText(red) + " -- Green: " + convertToText(green) + " -- Blue: " + convertToText(blue) + " -- White: " + convertToText(white))
         basic.pause(1000)
     }
@@ -15,7 +15,7 @@ function testColorSensorSingleRead() {
 function testColorSensorReadRGBW() {
     let raw_values: number[] = []
     while (true) {
-        raw_values = JoyPiAdvanced.colorSensorGetRGBW()
+        raw_values = JoyPiAdvanced.colorSensorRGBW()
         serial.writeLine("Red: " + convertToText(raw_values[0]) + " -- Green: " + convertToText(raw_values[1]) + " -- Blue: " + convertToText(raw_values[2]) + " -- White: " + convertToText(raw_values[3]))
         basic.pause(1000)
     }

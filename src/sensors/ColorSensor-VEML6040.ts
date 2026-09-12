@@ -46,7 +46,7 @@ namespace JoyPiAdvanced {
         return pins.i2cReadNumber(colorsensorADDR, NumberFormat.UInt16LE, false)
     }
     
-    function getIntegrationTimeDelay(int_time: JoyPiAdvancedColorSensor_IntegrationTime){
+    function integrationTimeDelay(int_time: JoyPiAdvancedColorSensor_IntegrationTime){
         if (int_time == JoyPiAdvancedColorSensor_IntegrationTime.ms_40) return 40
         else if (int_time == JoyPiAdvancedColorSensor_IntegrationTime.ms_80) return 80
         else if (int_time == JoyPiAdvancedColorSensor_IntegrationTime.ms_160) return 160
@@ -56,7 +56,7 @@ namespace JoyPiAdvanced {
         return 160
     }
 
-    function getIntegrationTimeValue(int_time: JoyPiAdvancedColorSensor_IntegrationTime) {
+    function integrationTimeValue(int_time: JoyPiAdvancedColorSensor_IntegrationTime) {
         if (int_time == JoyPiAdvancedColorSensor_IntegrationTime.ms_40) return 0x00
         else if (int_time == JoyPiAdvancedColorSensor_IntegrationTime.ms_80) return 0x10
         else if (int_time == JoyPiAdvancedColorSensor_IntegrationTime.ms_160) return 0x20
@@ -73,12 +73,12 @@ namespace JoyPiAdvanced {
     //% subcategory="Color-Sensor"
     //% weight=100
     export function initColorSensor(): void {
-        let config = getIntegrationTimeValue(integration_time)
+        let config = integrationTimeValue(integration_time)
         config &= ~BIT_SD
         config &= ~BIT_AF
         config &= ~BIT_TRIG
         writeOnColorSensor(REG_CONF, config)
-        basic.pause(getIntegrationTimeDelay(integration_time))
+        basic.pause(integrationTimeDelay(integration_time))
     }
 
     /**
@@ -99,7 +99,7 @@ namespace JoyPiAdvanced {
     //% block="color sensor red value"
     //% subcategory="Color-Sensor"
     //% weight=80
-    export function colorSensorGetRed(): number {
+    export function colorSensorRed(): number {
         return readFromColorSensor(REG_RED)
     }
 
@@ -109,7 +109,7 @@ namespace JoyPiAdvanced {
     //% block="color sensor green value"
     //% subcategory="Color-Sensor"
     //% weight=75
-    export function colorSensorGetGreen(): number {
+    export function colorSensorGreen(): number {
         return readFromColorSensor(REG_GREEN)
     }
 
@@ -119,7 +119,7 @@ namespace JoyPiAdvanced {
     //% block="color sensor blue value"
     //% subcategory="Color-Sensor"
     //% weight=70
-    export function colorSensorGetBlue(): number {
+    export function colorSensorBlue(): number {
         return readFromColorSensor(REG_BLUE)
     }
 
@@ -129,14 +129,14 @@ namespace JoyPiAdvanced {
     //% block="color sensor all RGBW-values"
     //% subcategory="Color-Sensor"
     //% weight=85
-    export function colorSensorGetRGBW(){
-        let red = colorSensorGetRed()
+    export function colorSensorRGBW(){
+        let red = colorSensorRed()
         basic.pause(5)
-        let green = colorSensorGetGreen()
+        let green = colorSensorGreen()
         basic.pause(5)
-        let blue = colorSensorGetBlue()
+        let blue = colorSensorBlue()
         basic.pause(5)
-        let white = colorSensorGetWhite()
+        let white = colorSensorWhite()
         return [red, green, blue, white]
     }
 
@@ -148,7 +148,7 @@ namespace JoyPiAdvanced {
     //% subcategory="Color-Sensor"
     //% weight=90
     export function colorSensorReadAll(){
-        let rgbw = colorSensorGetRGBW()
+        let rgbw = colorSensorRGBW()
         let dominantColor = ""
         if (rgbw[0] > rgbw[1] && rgbw[0] > rgbw[2]) dominantColor = "red"
         else if (rgbw[1] > rgbw[0] && rgbw[1] > rgbw[2]) dominantColor = "green"
@@ -162,7 +162,7 @@ namespace JoyPiAdvanced {
     //% block="color sensor white value"
     //% subcategory="Color-Sensor"
     //% weight=80
-    export function colorSensorGetWhite(): number {
+    export function colorSensorWhite(): number {
         return readFromColorSensor(REG_WHITE)
     }
 
@@ -177,11 +177,11 @@ namespace JoyPiAdvanced {
     export function colorSensorSetIntegrationTime(int_time: JoyPiAdvancedColorSensor_IntegrationTime){
         let config = readFromColorSensor(REG_CONF)
         config &= ~MASK_INTEGRATION_TIME
-        config |= getIntegrationTimeValue(int_time)
+        config |= integrationTimeValue(int_time)
         config &= ~BIT_SD
         integration_time = int_time
         writeOnColorSensor(REG_CONF, config)
-        basic.pause(getIntegrationTimeDelay(integration_time))
+        basic.pause(integrationTimeDelay(integration_time))
     }
 
     /**
@@ -197,7 +197,7 @@ namespace JoyPiAdvanced {
         config |= BIT_TRIG
         config &= ~BIT_SD
         writeOnColorSensor(REG_CONF, config)
-        basic.pause(getIntegrationTimeDelay(integration_time))
+        basic.pause(integrationTimeDelay(integration_time))
     }
 
     /**
@@ -213,6 +213,6 @@ namespace JoyPiAdvanced {
         config &= ~BIT_TRIG
         config &= ~ BIT_SD
         writeOnColorSensor(REG_CONF, config)
-        basic.pause(getIntegrationTimeDelay(integration_time))
+        basic.pause(integrationTimeDelay(integration_time))
     }
 }

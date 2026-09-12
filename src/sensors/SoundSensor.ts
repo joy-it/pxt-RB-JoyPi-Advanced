@@ -7,7 +7,7 @@ namespace JoyPiAdvanced {
   
     function soundSensorCheckRevision(){
         checkAdvancedRevision()
-        if (getAdvancedRevision() == JoyPiAdvancedRevision.rev2_0) soundSensorPin = DigitalPin.P5
+        if (advancedRevision() == JoyPiAdvancedRevision.rev2_0) soundSensorPin = DigitalPin.P5
         else soundSensorPin = DigitalPin.P9
     }
 
@@ -33,7 +33,7 @@ namespace JoyPiAdvanced {
         led.enable(false)
         soundSensorCheckRevision()
         pins.setEvents(soundSensorPin, PinEventType.Edge)
-        if (getAdvancedRevision() == JoyPiAdvancedRevision.rev2_0) {
+        if (advancedRevision() == JoyPiAdvancedRevision.rev2_0) {
             control.onEvent(
                 DAL.MICROBIT_ID_IO_P5,
                 DAL.MICROBIT_PIN_EVT_RISE,
@@ -78,7 +78,7 @@ namespace JoyPiAdvanced {
     //% block="sound recognized"
     //% subcategory="Sound sensor"
     //% weight=80
-    export function soundSensorGetState(): boolean {
+    export function soundSensorState(): boolean {
         return soundSensor_state
     }
     

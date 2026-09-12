@@ -136,7 +136,7 @@ namespace JoyPiAdvanced {
     //% block="received IR code"
     //% subcategory="IR Receiver"
     //% weight=95
-    export function irGetValue(): number {
+    export function irValue(): number {
         led.enable(false)
         notifyIrEvents()
         let ir_code : number = 0
@@ -149,7 +149,7 @@ namespace JoyPiAdvanced {
 
     /**
      * Returns the corresponding button of remote control
-     * @param ir_code code which was received with irGetValue() 
+     * @param ir_code code which was received with irValue() 
      */
     //% block="%ir_code as button of remote control"
     //% subcategory="IR Receiver"

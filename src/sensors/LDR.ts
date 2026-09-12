@@ -8,7 +8,7 @@ namespace JoyPiAdvanced {
     //% block="read voltage from LDR"
     //% subcategory="LDR"
     //% weight=100
-    export function ldrGetRawVoltage(): number {
+    export function ldrRawVoltage(): number {
         return adcReadVoltage(5)
     }
 
@@ -19,7 +19,7 @@ namespace JoyPiAdvanced {
     //% block="calculate lux with %U2"
     //% subcategory="LDR"
     //% weight=90
-    export function ldrGetLux(U2: number) {
+    export function ldrLux(U2: number) {
         let lux = 0
         if (U2 != 0){
             let R1 = (U1 * R2) / U2

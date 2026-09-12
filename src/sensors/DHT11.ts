@@ -69,7 +69,7 @@ namespace JoyPiAdvanced {
     //% block="reads temperature and humidity from DHT11"
     //% subcategory="DHT11"
     //% weight=90
-    export function dht11GetMeasurement(){
+    export function dht11Measurement(){
         readDHT11()
         return [temperature, humidity]
     }
@@ -80,7 +80,7 @@ namespace JoyPiAdvanced {
     //% block="last measured temperature of DHT11"
     //% subcategory="DHT11"
     //% weight=80
-    export function dht11GetLastTemperature(): number {
+    export function dht11LastTemperature(): number {
         return temperature;
     }
 
@@ -90,7 +90,7 @@ namespace JoyPiAdvanced {
     //% block="last measured humidity of DHT11"
     //% subcategory="DHT11"
     //% weight=75
-    export function dht11GetLastHumidity(): number {
+    export function dht11LastHumidity(): number {
         return humidity;
     }
 

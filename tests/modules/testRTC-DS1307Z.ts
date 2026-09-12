@@ -1,7 +1,7 @@
 JoyPiAdvanced.initializeAdvanced()
 
 function printRTCReadData() {
-    serial.writeLine(convertToText(JoyPiAdvanced.rtcGetYear()) + "-" + convertToText(JoyPiAdvanced.rtcGetMonth()) + "-" + convertToText(JoyPiAdvanced.rtcGetDay()) + " - Weekday: " + convertToText(JoyPiAdvanced.rtcGetWeekday()) + " --- " + convertToText(JoyPiAdvanced.rtcGetHour()) + ":" + convertToText(JoyPiAdvanced.rtcGetMinute()) + ":" + convertToText(JoyPiAdvanced.rtcGetSecond()))
+    serial.writeLine(convertToText(JoyPiAdvanced.rtcYear()) + "-" + convertToText(JoyPiAdvanced.rtcMonth()) + "-" + convertToText(JoyPiAdvanced.rtcDay()) + " - Weekday: " + convertToText(JoyPiAdvanced.rtcWeekday()) + " --- " + convertToText(JoyPiAdvanced.rtcHour()) + ":" + convertToText(JoyPiAdvanced.rtcMinute()) + ":" + convertToText(JoyPiAdvanced.rtcSecond()))
 }
 
 serial.writeLine("RTC Set all at once")

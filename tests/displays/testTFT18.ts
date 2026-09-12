@@ -9,17 +9,17 @@ JoyPiAdvanced.tftDrawPixel(10, 10, JoyPiAdvancedTFTColor.red)
 basic.pause(1000)
 
 JoyPiAdvanced.tftClear()
-JoyPiAdvanced.tftDrawLine(0, 0, JoyPiAdvanced.tftGetWidth(), JoyPiAdvanced.tftGetHeight(), JoyPiAdvancedTFTColor.green)
+JoyPiAdvanced.tftDrawLine(0, 0, JoyPiAdvanced.tftWidth(), JoyPiAdvanced.tftHeight(), JoyPiAdvancedTFTColor.green)
 basic.pause(1000)
 
 JoyPiAdvanced.tftClear()
-JoyPiAdvanced.tftDrawRectangle(10, 10, JoyPiAdvanced.tftGetWidth() - 10, JoyPiAdvanced.tftGetHeight() - 10, JoyPiAdvancedTFTColor.blue)
-JoyPiAdvanced.tftFillRectangle(20, 20, JoyPiAdvanced.tftGetWidth() - 30, JoyPiAdvanced.tftGetHeight() - 30, JoyPiAdvancedTFTColor.yellow)
+JoyPiAdvanced.tftDrawRectangle(10, 10, JoyPiAdvanced.tftWidth() - 10, JoyPiAdvanced.tftHeight() - 10, JoyPiAdvancedTFTColor.blue)
+JoyPiAdvanced.tftFillRectangle(20, 20, JoyPiAdvanced.tftWidth() - 30, JoyPiAdvanced.tftHeight() - 30, JoyPiAdvancedTFTColor.yellow)
 basic.pause(1000)
 
 JoyPiAdvanced.tftClear()
-JoyPiAdvanced.tftDrawCircle(JoyPiAdvanced.tftGetWidth() / 2, JoyPiAdvanced.tftGetHeight() / 2, 30, JoyPiAdvancedTFTColor.cyan)
-JoyPiAdvanced.tftFillCircle(JoyPiAdvanced.tftGetWidth() / 2, JoyPiAdvanced.tftGetHeight() / 2, 20, JoyPiAdvancedTFTColor.magenta)
+JoyPiAdvanced.tftDrawCircle(JoyPiAdvanced.tftWidth() / 2, JoyPiAdvanced.tftHeight() / 2, 30, JoyPiAdvancedTFTColor.cyan)
+JoyPiAdvanced.tftFillCircle(JoyPiAdvanced.tftWidth() / 2, JoyPiAdvanced.tftHeight() / 2, 20, JoyPiAdvancedTFTColor.magenta)
 basic.pause(1000)
 
 JoyPiAdvanced.tftClear()
@@ -27,7 +27,7 @@ JoyPiAdvanced.tftShowString("TFT Test", 10, 10, 2, JoyPiAdvancedTFTColor.white, 
 basic.pause(1000)
 
 JoyPiAdvanced.tftClear()
-JoyPiAdvanced.tftFillTriangle(10, 10, JoyPiAdvanced.tftGetWidth() - 10, JoyPiAdvanced.tftGetHeight() - 10, JoyPiAdvanced.tftGetWidth() / 2, JoyPiAdvanced.tftGetHeight() / 2, JoyPiAdvancedTFTColor.orange)
+JoyPiAdvanced.tftFillTriangle(10, 10, JoyPiAdvanced.tftWidth() - 10, JoyPiAdvanced.tftHeight() - 10, JoyPiAdvanced.tftWidth() / 2, JoyPiAdvanced.tftHeight() / 2, JoyPiAdvancedTFTColor.orange)
 basic.pause(1000)
 
 JoyPiAdvanced.tftFill(JoyPiAdvancedTFTColor.black)

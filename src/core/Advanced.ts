@@ -26,7 +26,7 @@ namespace JoyPiAdvanced {
     //% block="initialize Joy-Pi Advanced"
     //% weight=100
     export function initializeAdvanced() {
-        const i2c_devices = getI2CDevices();
+        const i2c_devices = i2CDevices();
         if (containsAll(i2c_devices, fixed_i2c_devices)) {
             // RGB Matrix 0x66 for Rev2.0, not I2C before
             if (i2c_devices.indexOf(0x66) >= 0) advanced_revision = 2.0;
@@ -54,7 +54,7 @@ namespace JoyPiAdvanced {
     }
 
     // method to search for all possible I2C devices
-    function getI2CDevices() {
+    function i2CDevices() {
         const i2c_devices = [];
         for (let addr = 0x01; addr <= 0x7F; addr++) {
             let buffer = control.createBuffer(0)
@@ -67,13 +67,13 @@ namespace JoyPiAdvanced {
     }
 
     // method to return saved version of Joy-Pi Advanced
-    export function getAdvancedRevision() {
+    export function advancedRevision() {
         return advanced_revision;
     }
 
     // method to check if initializeAdvanced() was executed
     export function isAdvancedInitialized() {
-        if (getAdvancedRevision() == 0) return false;
+        if (advancedRevision() == 0) return false;
         return true;
     }
 

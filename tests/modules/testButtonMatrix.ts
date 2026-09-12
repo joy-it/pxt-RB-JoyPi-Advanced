@@ -1,6 +1,6 @@
 function testButtonMatrix() {
     while (true) {
-        key = JoyPiAdvanced.buttonmatrixGetKey()
+        key = JoyPiAdvanced.buttonmatrixKey()
         if (key != "") {
             serial.writeLine(key)
         }
@@ -21,7 +21,7 @@ function testButtonMatrixCalculate() {
 
 function testButtonMatrixCode() {
     while (true) {
-        code = JoyPiAdvanced.buttonmatrixGetButtonCode()
+        code = JoyPiAdvanced.buttonmatrixButtonCode()
         if (code != -1) {
             serial.writeLine(convertToText(code))
         }

@@ -3,7 +3,7 @@ JoyPiAdvanced.initializeSoundSensor()
 
 basic.pause(100)
 
-if (JoyPiAdvanced.soundSensorGetState()) {
+if (JoyPiAdvanced.soundSensorState()) {
     serial.writeLine("Sound detected")
 }
 else {

@@ -53,7 +53,7 @@ namespace JoyPiAdvanced {
     //% block="gyroscope temperature"
     //% weight=95
     //% subcategory="Gyroscope"
-    export function gyroscopeGetTemperature() {
+    export function gyroscopeTemperature() {
         let tempH = (read(0x41) << 8);
         let tempL = read(0x42);
         let temp = tempH | tempL;
@@ -66,7 +66,7 @@ namespace JoyPiAdvanced {
     //% block="gyroscope X-axis"
     //% weight=90
     //% subcategory="Gyroscope"
-    export function gyroscopeGetX() {
+    export function gyroscopeXValue() {
         let xH = (read(0x43) << 8);
         let xL = read(0x44);
         let x = xH | xL;
@@ -84,7 +84,7 @@ namespace JoyPiAdvanced {
     //% block="gyroscope Y-axis"
     //% weight=85
     //% subcategory="Gyroscope"
-    export function gyroscopeGetY() {
+    export function gyroscopeYValue() {
         let yH = (read(0x45) << 8);
         let yL = read(0x46);
         let y = yH | yL;
@@ -102,9 +102,9 @@ namespace JoyPiAdvanced {
     //% block="gyroscope tilt direction"
     //% weight=80
     //% subcategory="Gyroscope"
-    export function gyroscopeGetTilt() {
-        let y = gyroscopeGetY();
-        let x = gyroscopeGetX();
+    export function gyroscopeTilt() {
+        let y = gyroscopeYValue();
+        let x = gyroscopeXValue();
         if (y > 5) {
             return 'right';
         }

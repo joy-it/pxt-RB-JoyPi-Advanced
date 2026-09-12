@@ -4,7 +4,7 @@ namespace JoyPiAdvanced {
     // method to set right I2C address
     function eepromCheckAdress(){
         checkAdvancedRevision()
-        if (getAdvancedRevision() == JoyPiAdvancedRevision.rev1_0) eepromADDR = 0x50;
+        if (advancedRevision() == JoyPiAdvancedRevision.rev1_0) eepromADDR = 0x50;
         else eepromADDR = 0x51;
         basic.pause(10)
     }

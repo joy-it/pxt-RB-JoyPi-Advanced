@@ -6,7 +6,7 @@ namespace JoyPiAdvanced {
     //% block="raw voltage of NTC"
     //% subcategory="NTC"
     //% weight=90
-    export function ntcGetRawVoltage(): number {
+    export function ntcRawVoltage(): number {
       return adcReadVoltage(2)
     }
   
@@ -17,7 +17,7 @@ namespace JoyPiAdvanced {
     //% block="calculate temperature of NTC with %raw_value"
     //% subcategory="NTC"
     //% weight=100
-    export function ntcGetTemperature(raw_value:number) {
+    export function ntcTemperature(raw_value:number) {
         let temperature = ((raw_value / 5.0) * 10000) / (1 - (raw_value / 5.0))
         temperature = 1 / ((1 / 298.15) + (1 / 3950.0) * Math.log(temperature / 10000))
         temperature = temperature - 273.15

@@ -242,7 +242,7 @@ namespace JoyPiAdvanced  {
     //% block="button-code of pressed button on button matrix"
     //% weight=60
     //% subcategory="Button matrix"
-    export function buttonmatrixGetButtonCode() {
+    export function buttonmatrixButtonCode() {
         let returnValue = -1
         if (checkMatrix() == false) return -1
         else {
@@ -292,8 +292,8 @@ namespace JoyPiAdvanced  {
     //% block="value of pressed button on button matrix"
     //% weight=90
     //% subcategory="Button matrix"
-    export function buttonmatrixGetKey() {
-        let value = buttonmatrixGetButtonCode()
+    export function buttonmatrixKey() {
+        let value = buttonmatrixButtonCode()
         if(value == 11) return "7"
         if (value == 12) return "4"
         if (value == 13) return "1"
@@ -321,7 +321,7 @@ namespace JoyPiAdvanced  {
     //% weight=60
     //% subcategory="Button matrix"
     export function buttonmatrixCalculate(term?: string){
-        let value = buttonmatrixGetKey()
+        let value = buttonmatrixKey()
         if (value == "") return term
         else if (value == "=") return calculateTerm(term)
         else if (value == "#") return ""

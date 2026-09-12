@@ -1,6 +1,6 @@
 JoyPiAdvanced.initializeAdvanced()
 JoyPiAdvanced.barometerInit()
 
-serial.writeLine("Pressure: " + convertToText(JoyPiAdvanced.barometerGetPressure()) + " hPa")
-serial.writeLine("Temperature: " + convertToText(JoyPiAdvanced.barometerGetTemperature()) + " C")
-serial.writeLine("Altitude: " + convertToText(JoyPiAdvanced.barometerGetAltitude()) + " m")
+serial.writeLine("Pressure: " + convertToText(JoyPiAdvanced.barometerPressure()) + " hPa")
+serial.writeLine("Temperature: " + convertToText(JoyPiAdvanced.barometerTemperature()) + " C")
+serial.writeLine("Altitude: " + convertToText(JoyPiAdvanced.barometerAltitude()) + " m")

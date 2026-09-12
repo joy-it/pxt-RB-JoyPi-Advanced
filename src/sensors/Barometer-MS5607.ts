@@ -30,7 +30,7 @@ namespace  JoyPiAdvanced{
         return result_coef
     }
 
-    function get_coefficients() {
+    function coefficients() {
         let cx: number[] = []
 
         for (let i = 0; i < 6; i++) {
@@ -61,7 +61,7 @@ namespace  JoyPiAdvanced{
         return value
     }
 
-    function get_pressure() {
+    function pressure() {
         d1 = conversion(0x08, 0x00)
         d2 = conversion(0x08, 0x10)
         dT = d2 - (coefficients[4] * 256)
@@ -73,7 +73,7 @@ namespace  JoyPiAdvanced{
     }
 
 
-    function get_temperature() {
+    function temperature() {
         d2 = conversion(0x08, 0x10)
         dT = d2 - (coefficients[4] * 256)
         temp = 2000 + dT * (coefficients[5] / 8388608)
@@ -88,7 +88,7 @@ namespace  JoyPiAdvanced{
     //% subcategory="Barometer"
     export function barometerInit(): void {
         resetMS5607()
-        coefficients = get_coefficients()
+        coefficients = coefficients()
     }
 
     /**
@@ -97,8 +97,8 @@ namespace  JoyPiAdvanced{
     //% block="barometer temperature"
     //% weight=90
     //% subcategory="Barometer"
-    export function barometerGetTemperature() {
-        return Math.round(((get_temperature() / 100) + Number.EPSILON) * 100) / 100
+    export function barometerTemperature() {
+        return Math.round(((temperature() / 100) + Number.EPSILON) * 100) / 100
     }
 
     /**
@@ -107,8 +107,8 @@ namespace  JoyPiAdvanced{
     //% block="barometer pressure"
     //% weight=80
     //% subcategory="Barometer"
-    export function barometerGetPressure() {
-        return Math.round(((get_pressure() / 100) + Number.EPSILON) * 100) / 100
+    export function barometerPressure() {
+        return Math.round(((pressure() / 100) + Number.EPSILON) * 100) / 100
     }
 
     /**
@@ -119,9 +119,9 @@ namespace  JoyPiAdvanced{
     //% weight=70
     //% subcategory="Barometer"
     //% reference_pressure.defl=1013.25
-    export function barometerGetAltitude(reference_pressure ?: number) {
+    export function barometerAltitude(reference_pressure ?: number) {
         if (reference_pressure == 0) reference_pressure = 1013.25;
-        let pressure = barometerGetPressure()
+        let pressure = barometerPressure()
         let ratio = pressure / reference_pressure
         let altitude = 44330 * (1 - Math.pow(ratio, 1 / 5.255))
         return Math.round(altitude * 100) / 100

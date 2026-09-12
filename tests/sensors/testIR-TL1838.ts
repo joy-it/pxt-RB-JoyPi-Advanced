@@ -4,7 +4,7 @@ JoyPiAdvanced.initIrReceiver()
 function testIR() {
     let ir_code = 0
     while (true){
-        ir_code = JoyPiAdvanced.irGetValue()
+        ir_code = JoyPiAdvanced.irValue()
         if (ir_code != 0) {
             serial.writeLine(JoyPiAdvanced.irReadValue(ir_code))
         }

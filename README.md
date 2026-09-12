@@ -169,21 +169,21 @@ JoyPiAdvanced.barometerInit()
 Read the pressure measurement from the barometer in mBar.
 ```blocks
 // Read pressure from barometer
-JoyPiAdvanced.barometerGetPressure()
+JoyPiAdvanced.barometerPressure()
 ```
 
 #### Read temperature
 Read the temperature measurement from the barometer in Celsius.
 ```blocks
 // Read temperature from barometer
-JoyPiAdvanced.barometerGetTemperature()
+JoyPiAdvanced.barometerTemperature()
 ```
 
 #### Calculate altitude
 You can calculate the altitude with the measured pressure of the barometer. Therefore, your local QNH should be given the method. Alternatively, you can use the mean sea level pressure, which is set as the default value.
 ```blocks
 // Read altitude from barometer
-JoyPiAdvanced.barometerGetAltitude(1013.25)
+JoyPiAdvanced.barometerAltitude(1013.25)
 ```
 
 ### Button matrix
@@ -298,20 +298,20 @@ The data from the sensor can be read from different blocks.
 You can detect the intensity of the base colors with the following functions.
 ```blocks
 // Get red intensity
-JoyPiAdvanced.colorSensorGetRed()
+JoyPiAdvanced.colorSensorRed()
 // Get green intensity
-JoyPiAdvanced.colorSensorGetGreen()
+JoyPiAdvanced.colorSensorGreen()
 // Get blue intensity
-JoyPiAdvanced.colorSensorGetBlue()
+JoyPiAdvanced.colorSensorBlue()
 // Get white intensity
-JoyPiAdvanced.colorSensorGetWhite()
+JoyPiAdvanced.colorSensorWhite()
 ```
 
 ##### All colors
 You can read all color values with one block. This method returns an array with the detected color values `[red, green, blue, white]`. 
 ```blocks
 // get RGBW values
-JoyPiAdvanced.colorSensorGetRGBW()
+JoyPiAdvanced.colorSensorRGBW()
 ```
 
 ##### All colors & dominant color
@@ -338,7 +338,7 @@ The DHT11 is a combination sensor which can measure temperatures (0 - 50 degrees
 This block triggers a measurement from the DHT11 and returns an array with temperature and humidity `[temperature, humidity]`.
 ```blocks
 // Measure temperature & humidity and return it
-JoyPiAdvanced.dht11GetMeasurement()
+JoyPiAdvanced.dht11Measurement()
 ```
 
 #### Start measurement
@@ -356,12 +356,12 @@ JoyPiAdvanced.dht11WasSuccessful()
 ```
 
 #### Last measured values
-You can use `JoyPiAdvanced.dht11GetTemperature()` and `JoyPiAdvanced.dht11GetHumidity()` to receive the **last** corresponding measurement values.
+You can use `JoyPiAdvanced.dht11Temperature()` and `JoyPiAdvanced.dht11Humidity()` to receive the **last** corresponding measurement values.
 ```blocks
 // Return humidity
-JoyPiAdvanced.dht11GetLastHumidity()
+JoyPiAdvanced.dht11LastHumidity()
 // Return temperature
-JoyPiAdvanced.dht11GetLastTemperature()
+JoyPiAdvanced.dht11LastTemperature()
 ```
 
 ### DS18B20 temperature sensor
@@ -425,26 +425,26 @@ This folowing method set the scale factor of the gyroscope. The following table 
 JoyPiAdvanced.gyroscopeSetScaleFactor(JoyPiAdvancedGyroscopeScaleFactor.scale_0)
 ```
 #### Measure axis values
-The orientation of the X-axis and Y-axis can be measured by using the `JoyPiAdvanced.gyroscopeGetX()` and `JoyPiAdvanced.gyroscopeGetY()` functions.
+The orientation of the X-axis and Y-axis can be measured by using the `JoyPiAdvanced.gyroscopeXValue()` and `JoyPiAdvanced.gyroscopeYValue()` functions.
 ```blocks
 // Measure orientation of X-Axis
-JoyPiAdvanced.gyroscopeGetX()
+JoyPiAdvanced.gyroscopeXValue()
 // Measure orientation of Y-Axis
-JoyPiAdvanced.gyroscopeGetY()
+JoyPiAdvanced.gyroscopeYValue()
 ```
 
 #### Measure tilt
-The tilt of the device can be measured by using the `JoyPiAdvanced.gyroscopeGetTilt()` function. The method returns `right`, `left`, `forward`, `backward` or `No movement`.
+The tilt of the device can be measured by using the `JoyPiAdvanced.gyroscopeTilt()` function. The method returns `right`, `left`, `forward`, `backward` or `No movement`.
 ```blocks
 // Measure tilt of the device
-JoyPiAdvanced.gyroscopeGetTilt()
+JoyPiAdvanced.gyroscopeTilt()
 ```
 
 #### Measure temperature
-Additionally, the temperature can be measured with the help of the gyroscope by using the `JoyPiAdvanced.gyroscopeGetTemperature()` function.
+Additionally, the temperature can be measured with the help of the gyroscope by using the `JoyPiAdvanced.gyroscopeTemperature()` function.
 ```blocks
 // Measure temperature
-JoyPiAdvanced.gyroscopeGetTemperature()
+JoyPiAdvanced.gyroscopeTemperature()
 ```
 
 ### Hall sensor
@@ -454,10 +454,10 @@ Hall sensors are sensitive to magnetic fields and can therefore determine the st
 > The hall sensor is an analog sensor and is connected to channel `A4` of the ADC.
 
 #### Measure digital value
-Determine the intensity of a magnetic field by measuring the digital value passing through the sensor with the `JoyPiAdvanced.hallSensorGetMagneticField()` function.
+Determine the intensity of a magnetic field by measuring the digital value passing through the sensor with the `JoyPiAdvanced.hallSensorMagneticField()` function.
 ```blocks
 // Measure magnetic field
-JoyPiAdvanced.hallSensorGetMagneticField()
+JoyPiAdvanced.hallSensorMagneticField()
 ```
 
 #### Identify magnetic field
@@ -466,7 +466,7 @@ With the following blocks, you can determine if a north or a south pole was dete
 ##### North pole
 ```blocks
 // Measure magnetic field
-let hallsensor_value = JoyPiAdvanced.hallSensorGetMagneticField()
+let hallsensor_value = JoyPiAdvanced.hallSensorMagneticField()
 // check if hall sensor detected north pole
 if (JoyPiAdvanced.hallSensorIsNorthPole(hallsensor_value)) {
     // do something here
@@ -475,7 +475,7 @@ if (JoyPiAdvanced.hallSensorIsNorthPole(hallsensor_value)) {
 ##### South pole
 ```blocks
 // Measure voltage
-let hallsensor_value = JoyPiAdvanced.hallSensorGetMagneticField()
+let hallsensor_value = JoyPiAdvanced.hallSensorMagneticField()
 // check if hall sensor detected south pole
 if (JoyPiAdvanced.hallSensorIsSouthPole(hallsensor_value)) {
     // do something here
@@ -496,17 +496,17 @@ JoyPiAdvanced.initIrReceiver()
 ```
 
 #### Get pressed button code
-Each button is assigned a unique number for identification. With `JoyPiAdvanced.irGetValue()` the corresponding identification number can be read out. If no button was pressed, 0 is returned instead.
+Each button is assigned a unique number for identification. With `JoyPiAdvanced.irValue()` the corresponding identification number can be read out. If no button was pressed, 0 is returned instead.
 ```blocks
 // Read out pressed button code
-JoyPiAdvanced.irGetValue()
+JoyPiAdvanced.irValue()
 ```
 
 #### Get pressed button value of remote control
 With the unique number of each button on the remote control, which is included in the Joy-Pi Advanced, this method returns the printed name on each button. If the code is not assigned, the method returns `Unkown: ` together with the unknown number.
 ```blocks
 // Read out pressed button code
-let ir_code = JoyPiAdvanced.irGetValue()
+let ir_code = JoyPiAdvanced.irValue()
 // Return value of remote control
 JoyPiAdvanced.irReadValue(ir_code)
 ```
@@ -518,12 +518,12 @@ The joystick outputs its position on the X an d Y axes and can thus be clearly l
 > The joystick is connected to the ADC channel `A0` (X-Axis) and `A1` (Y-Axis) as well as to `P10` (button).
 
 #### Axis positions
-You can locate the position of the Joystick by using `JoyPiAdvanced.joystickGetXValue()` and `JoyPiAdvanced.joystickGetYValue()`. Because the joystick is connected to the build-in 12-bit ADC of the Joy-Pi Advanced, the axis values are between 0 and 4095.
+You can locate the position of the Joystick by using `JoyPiAdvanced.joystickXValue()` and `JoyPiAdvanced.joystickYValue()`. Because the joystick is connected to the build-in 12-bit ADC of the Joy-Pi Advanced, the axis values are between 0 and 4095.
 ```blocks
 // Get X-Axis
-JoyPiAdvanced.joystickGetXValue()
+JoyPiAdvanced.joystickXValue()
 // Get Y-Axis
-JoyPiAdvanced.joystickGetYValue()
+JoyPiAdvanced.joystickYValue()
 ```
 
 #### Button input
@@ -612,19 +612,19 @@ A light dependent resistor is a light sensitive module. The more light that hits
 > The LDR is connected to the ADC channel `A5`.
 
 #### Measure light intensity
-The light intensity can measured by using `JoyPiAdvanced.ldrGetRawVoltage()`. The intensity is returned as voltage.
+The light intensity can measured by using `JoyPiAdvanced.ldrRawVoltage()`. The intensity is returned as voltage.
 ```blocks
 // Measure light intensity
-JoyPiAdvanced.ldrGetRawVoltage()
+JoyPiAdvanced.ldrRawVoltage()
 ```
 
 #### Calculate lux
 With the measured light intensity, the light intensity can be calculated in lux. Therefore this method receives as a parameter `U2` the voltage from the LDR and returns the calculated lux.
 ```blocks
 // Measure light intensity
-let ldr_voltage = JoyPiAdvanced.ldrGetRawVoltage()
+let ldr_voltage = JoyPiAdvanced.ldrRawVoltage()
 // calculate lux
-JoyPiAdvanced.ldrGetLux(ldr_voltage)
+JoyPiAdvanced.ldrLux(ldr_voltage)
 ```
 
 ### Light barrier
@@ -672,19 +672,19 @@ A negative temperature coefficient thermistor (NTC) is a temperature-dependent r
 > The NTC is connected to the ADC channel `A2`.
 
 #### Measure temperature
-The temperature can be measured by using `JoyPiAdvanced.ntcGetRawVoltage(). This method returns the raw voltage value of the NTC.
+The temperature can be measured by using `JoyPiAdvanced.ntcRawVoltage(). This method returns the raw voltage value of the NTC.
 ```blocks
 // Measure temperature
-JoyPiAdvanced.ntcGetRawVoltage()
+JoyPiAdvanced.ntcRawVoltage()
 ```
 
 #### Calculate temperature
 This method can calculate the temperature in Celsius. As a parameter `raw_value` it receives the raw voltage value from the NTC.
 ```blocks
 // Measure temperature
-let ntc_voltage = JoyPiAdvanced.ntcGetRawVoltage()
+let ntc_voltage = JoyPiAdvanced.ntcRawVoltage()
 // Calculate temperature in Celsius
-JoyPiAdvanced.ntcGetTemperature(ntc_voltage)
+JoyPiAdvanced.ntcTemperature(ntc_voltage)
 ```
 
 ### OLED Display
@@ -815,7 +815,7 @@ A potentiometer is a component whose resistance can be changed mechanically. By 
 #### Read potentiometer
 The digital value currently applied to the potentiometer can be measured directly.
 ```blocks
-JoyPiAdvanced.potentiometerGetValue()
+JoyPiAdvanced.potentiometerValue()
 ```
 
 ### RFID module
@@ -934,19 +934,19 @@ JoyPiAdvanced.rtcSetSecond(2)
 Of course each parameter can also be read out again.
 ```blocks
 // Read year
-JoyPiAdvanced.rtcGetYear()
+JoyPiAdvanced.rtcYear()
 // Read month
-JoyPiAdvanced.rtcGetMonth()
+JoyPiAdvanced.rtcMonth()
 // Read day
-JoyPiAdvanced.rtcGetDay()
+JoyPiAdvanced.rtcDay()
 // Read weekday
-JoyPiAdvanced.rtcGetWeekday()
+JoyPiAdvanced.rtcWeekday()
 // Read hour
-JoyPiAdvanced.rtcGetHour()
+JoyPiAdvanced.rtcHour()
 // Read minute
-JoyPiAdvanced.rtcGetMinute()
+JoyPiAdvanced.rtcMinute()
 // Read second
-JoyPiAdvanced.rtcGetSecond()
+JoyPiAdvanced.rtcSecond()
 ```
 
 ### Relay
@@ -1048,10 +1048,10 @@ JoyPiAdvanced.deinitializeShockSensor()
 ```
 
 #### Detect shock or vibrations
-The function `JoyPiAdvanced.shockSensorGetState()` allows you to detect shocks and vibrations. The function returns `true` or `false`.
+The function `JoyPiAdvanced.shockSensorState()` allows you to detect shocks and vibrations. The function returns `true` or `false`.
 ```blocks
 // Check for shocks
-if (JoyPiAdvanced.shockSensorGetState()) {
+if (JoyPiAdvanced.shockSensorState()) {
     // do something
 }
 ```
@@ -1084,10 +1084,10 @@ JoyPiAdvanced.deinitializeSoundSensor()
 ```
 
 #### Detect sound
-The function `JoyPiAdvanced.soundSensorGetState()` allows you to detect sound. The function returns `true` or `false`.
+The function `JoyPiAdvanced.soundSensorState()` allows you to detect sound. The function returns `true` or `false`.
 ```blocks
 // Check for shocks
-if (JoyPiAdvanced.soundSensorGetState()) {
+if (JoyPiAdvanced.soundSensorState()) {
     // do something
 }
 ```
@@ -1279,9 +1279,9 @@ JoyPiAdvanced.tftFillTriangle(64, 40, 30, 110, 98, 110, JoyPiAdvancedTFTColor.or
 With the following methods, you can get the width or height of the TFT in case these are needed for the graphical elements.
 ```blocks
 // width of the TFT
-JoyPiAdvanced.tftGetWidth()
+JoyPiAdvanced.tftWidth()
 // height of the TFT
-JoyPiAdvanced.tftGetHeight()
+JoyPiAdvanced.tftHeight()
 ```
 
 ### Touch sensor

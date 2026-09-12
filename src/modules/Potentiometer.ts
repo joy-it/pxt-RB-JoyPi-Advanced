@@ -6,7 +6,7 @@ namespace JoyPiAdvanced {
     //% block="potentiometer value"
     //% subcategory="Potentiometer"
     //% weight=100
-    export function potentiometerGetValue(): number {
+    export function potentiometerValue(): number {
       return adcReadValue(3)
     }
   }

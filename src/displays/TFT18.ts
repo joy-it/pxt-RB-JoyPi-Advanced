@@ -711,7 +711,7 @@
       //% block="height of TFT display"
       //% subcategory="TFT1.8"
       //% weight=50
-      export function tftGetHeight() {
+      export function tftHeight() {
           return TFTHEIGHT
       }
 
@@ -721,7 +721,7 @@
       //% block="width of TFT display"
       //% subcategory="TFT1.8"
       //% weight=50
-      export function tftGetWidth() {
+      export function tftWidth() {
           return TFTWIDTH
       }
   }

@@ -57,7 +57,7 @@ namespace JoyPiAdvanced {
     //% block="shock recognized"
     //% subcategory="Shock sensor"
     //% weight=80
-    export function shockSensorGetState(): boolean {
+    export function shockSensorState(): boolean {
       return shockSensor_state
     }
 

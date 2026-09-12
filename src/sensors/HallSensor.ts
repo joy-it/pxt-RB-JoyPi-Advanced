@@ -5,7 +5,7 @@ namespace JoyPiAdvanced {
     //% block="hall sensor digital value"
     //% subcategory="Hall sensor"
     //% weight=100
-    export function hallSensorGetMagneticField() {
+    export function hallSensorMagneticField() {
       return adcReadValue(4)
     } 
 

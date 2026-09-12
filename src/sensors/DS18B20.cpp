@@ -98,7 +98,7 @@ void DS18B20Start(void){
   DS18B20WiteByte(0x44);
 }
 
-float DS18B20GetTemperture(void){
+float DS18B20Temperture(void){
   int temp;
   int TH,TL;
   float value;
@@ -128,8 +128,8 @@ float DS18B20GetTemperture(void){
   //%
 int Temperature() {
     float data1,data2;
-    data1=DS18B20GetTemperture();
-    data2=DS18B20GetTemperture();
+    data1=DS18B20Temperture();
+    data2=DS18B20Temperture();
     if(fabs(data2 - data1) > 2.0f){
         return data1*10;
     }else{

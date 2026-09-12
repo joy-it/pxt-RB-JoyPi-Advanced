@@ -1,7 +1,7 @@
 JoyPiAdvanced.initializeAdvanced()
 
 serial.writeLine("Check if read values are from a sucessfull measurement")
-let dht_values = JoyPiAdvanced.dht11GetMeasurement()
+let dht_values = JoyPiAdvanced.dht11Measurement()
 if (JoyPiAdvanced.dht11WasSuccessful()) {
     let dht11Temperature = dht_values[0]
     let dht11Humidity = dht_values[1]
@@ -14,7 +14,7 @@ basic.pause(2000)
 
 serial.writeLine("Get values after sucessfull measurement")
 if (JoyPiAdvanced.dht11ReadSensor()){
-    serial.writeLine("Temperature: " + convertToText(JoyPiAdvanced.dht11GetLastTemperature()) + " C -- Humidity: " + convertToText(JoyPiAdvanced.dht11GetLastHumidity()) + " %")
+    serial.writeLine("Temperature: " + convertToText(JoyPiAdvanced.dht11LastTemperature()) + " C -- Humidity: " + convertToText(JoyPiAdvanced.dht11LastHumidity()) + " %")
 }
 else {
     serial.writeLine("Measurement were unsucessfull")
