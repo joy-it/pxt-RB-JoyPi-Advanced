@@ -10,7 +10,7 @@ namespace JoyPiAdvanced {
     let wheel = 20
     let rpm = 0
 
-    function RPM(): boolean {
+    function getRPM(): boolean {
         if (!lightBarrier_initiliazed) initializeLightBarrier()
 
         if (pins.digitalReadPin(pinLightBarrier) && !lastState) {
@@ -70,14 +70,14 @@ namespace JoyPiAdvanced {
     //% weight=90
     //% timeInterval.defl=5 timeInterval.min=0 timeInterval.max=60
     export function lightBarrierRPM(timeInterval: number): number {
-        if (RPM()) counter++
+        if (getRPM()) counter++
         if ((input.runningTime() - previousMillis) > calculateTimeIntervalInUS(timeInterval)) {
             previousMillis = input.runningTime()
-            RPM = ((counter * calculateTimeIntervalFactorInMin(timeInterval))) / wheel
+            rpm = ((counter * calculateTimeIntervalFactorInMin(timeInterval))) / wheel
             counter = 0
             lightBarrier_newRPM = true
         }
-        return RPM
+        return rpm
     }
 
     /**

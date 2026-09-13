@@ -30,7 +30,7 @@ namespace  JoyPiAdvanced{
         return result_coef
     }
 
-    function coefficients() {
+    function getCoefficients() {
         let cx: number[] = []
 
         for (let i = 0; i < 6; i++) {
@@ -88,7 +88,7 @@ namespace  JoyPiAdvanced{
     //% subcategory="Barometer"
     export function barometerInit(): void {
         resetMS5607()
-        coefficients = coefficients()
+        coefficients = getCoefficients()
     }
 
     /**
